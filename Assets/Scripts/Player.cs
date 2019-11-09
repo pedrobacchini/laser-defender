@@ -8,6 +8,8 @@ using UnityEngine;
 public class Player : SerializedMonoBehaviour
 {
     [OdinSerialize] private float Speed { get; set; } = 10;
+    [OdinSerialize] private GameObject LaserPrefab { get; set; }
+    [OdinSerialize] private float ProjectileSpeed { get; set; } = 20;
 
     private float _xMin, _xMax, _yMin, _yMax;
 
@@ -25,6 +27,12 @@ public class Player : SerializedMonoBehaviour
                 return new Vector2(newXPos, newYPos);
             })
             .Subscribe(newPosition => transform.position = newPosition);
+
+        this.UpdateAsObservable()
+            .Where(_ => Input.GetButton("Fire1"))
+            .Select(_ => Instantiate(LaserPrefab, transform.position, Quaternion.identity))
+            .Select(laser => laser.GetComponent<Rigidbody2D>())
+            .Subscribe(rigidbody2dLaser => rigidbody2dLaser.velocity = new Vector2(0, ProjectileSpeed));
     }
 
     private void SetUpMoveBoundaries()
