@@ -111,7 +111,7 @@ MonoBehaviour:
       Data: 0
     - Name: ProjectileSpeed
       Entry: 4
-      Data: 40
+      Data: 15
     - Name: ProjectileFiringPeriod
       Entry: 4
       Data: 0.1
