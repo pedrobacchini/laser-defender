@@ -31,10 +31,10 @@ MonoBehaviour:
       Data: 1
     - Name: TimeBetweenSpawns
       Entry: 4
-      Data: 1
+      Data: 0.5
     - Name: SpawnRandomFactor
       Entry: 4
-      Data: 3
+      Data: 0.3
     - Name: NumberOfEnemies
       Entry: 3
       Data: 5
