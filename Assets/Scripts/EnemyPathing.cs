@@ -7,14 +7,17 @@ using UnityEngine;
 
 public class EnemyPathing : SerializedMonoBehaviour
 {
-    [OdinSerialize] private List<Transform> WayPoints { get; set; }
-
+    [OdinSerialize] private WaveConfig WaveConfig { get; set; }
     [OdinSerialize] private float MoveSpeed { get; set; } = 2f;
+    
+    private List<Transform> WayPoints { get; set; }
 
     private int _wayPointIndex = 0;
 
     private void Start()
     {
+        WayPoints = WaveConfig.WaveWayPoints;
+        
         transform.position = WayPoints[0].position;
 
         bool IsFinishMovement() => _wayPointIndex + 1 >= WayPoints.Count;
