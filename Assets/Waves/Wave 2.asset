@@ -16,7 +16,7 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 7300203172319382166, guid: 1beca046d3aef34429b54f8564450318, type: 3}
+    - {fileID: 3671600392947575465, guid: aadc7c361a0314273a607509b33b7c15, type: 3}
     - {fileID: 7062363722963990585, guid: 8ae093b9c8e1247a8b1196df4abf1b41, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
@@ -37,7 +37,7 @@ MonoBehaviour:
       Data: 0.3
     - Name: NumberOfEnemies
       Entry: 3
-      Data: 5
+      Data: 4
     - Name: MoveSpeed
       Entry: 4
-      Data: 2
+      Data: 8

@@ -1,35 +1,30 @@
-﻿using System.Collections.Generic;
-using Sirenix.OdinInspector;
-using Sirenix.Serialization;
+﻿using Sirenix.OdinInspector;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
 
 public class EnemyPathing : SerializedMonoBehaviour
 {
-    [OdinSerialize] private WaveConfig WaveConfig { get; set; }
-    [OdinSerialize] private float MoveSpeed { get; set; } = 2f;
-    
-    private List<Transform> WayPoints { get; set; }
+    public WaveConfig WaveConfig { get; set; }
 
     private int _wayPointIndex = 0;
 
     private void Start()
     {
-        WayPoints = WaveConfig.WaveWayPoints;
+        var wayPoints = WaveConfig.WaveWayPoints;
         
-        transform.position = WayPoints[0].position;
+        transform.position = wayPoints[0].position;
 
-        bool IsFinishMovement() => _wayPointIndex + 1 >= WayPoints.Count;
+        bool IsFinishMovement() => _wayPointIndex + 1 >= wayPoints.Count;
 
         this.UpdateAsObservable()
             .Where(_ => !IsFinishMovement())
             .Subscribe(_ =>
             {
-                var targetPosition = WayPoints[_wayPointIndex + 1].position;
-                var movementThisFrame = MoveSpeed * Time.deltaTime;
+                var targetPosition = wayPoints[_wayPointIndex + 1].position;
+                var movementThisFrame = WaveConfig.MoveSpeed * Time.deltaTime;
                 transform.position = Vector2.MoveTowards(transform.position, targetPosition, movementThisFrame);
-                if (transform.position.Equals(WayPoints[_wayPointIndex + 1].position)) _wayPointIndex++;
+                if (transform.position.Equals(wayPoints[_wayPointIndex + 1].position)) _wayPointIndex++;
             });
 
         this.UpdateAsObservable()

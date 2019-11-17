@@ -8,19 +8,27 @@ public class EnemySpawner : SerializedMonoBehaviour
 {
     [OdinSerialize] private List<WaveConfig> WaveConfigs { get; set; }
 
-    private const int StartingWave = 0;
+    [OdinSerialize] private int StartingWave { get; set; }
 
     private void Start()
     {
-        var currentWave = WaveConfigs[StartingWave];
-        StartCoroutine(SpawnAllEnemiesInWave(currentWave));
+        StartCoroutine(SpawnAllWaves());
+    }
+
+    private IEnumerator SpawnAllWaves()
+    {
+        for (var waveIndex = StartingWave; waveIndex < WaveConfigs.Count; waveIndex++)
+        {
+            yield return StartCoroutine(SpawnAllEnemiesInWave(WaveConfigs[waveIndex]));
+        }
     }
 
     private static IEnumerator SpawnAllEnemiesInWave(WaveConfig currentWave)
     {
         for (var enemyCount = 0; enemyCount < currentWave.NumberOfEnemies; enemyCount++)
         {
-            Instantiate(currentWave.EnemyPrefab, currentWave.WaveWayPoints[0].position, Quaternion.identity);
+            var newEnemy = Instantiate(currentWave.EnemyPrefab, currentWave.WaveWayPoints[0].position, Quaternion.identity);
+            newEnemy.GetComponent<EnemyPathing>().WaveConfig = currentWave;
             yield return new WaitForSeconds(currentWave.TimeBetweenSpawns);   
         }
     }
