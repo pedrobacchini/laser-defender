@@ -119,7 +119,8 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects: []
+    ReferencedUnityObjects:
+    - {fileID: 7139308894472526819, guid: f52fa70e10b2d4464a141ce4e6559f97, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -128,6 +129,27 @@ MonoBehaviour:
     - Name: Health
       Entry: 4
       Data: 100
+    - Name: ShotCounter
+      Entry: 4
+      Data: 0
+    - Name: ProjectileSpeed
+      Entry: 4
+      Data: 20
+    - Name: TimeBetweenShots
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0.288461536
+    - Name: 
+      Entry: 4
+      Data: 3.07692313
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: LaserPrefab
+      Entry: 10
+      Data: 0
 --- !u!58 &1520942294738016890
 CircleCollider2D:
   m_ObjectHideFlags: 0
