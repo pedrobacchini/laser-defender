@@ -16,11 +16,6 @@ public class Enemy : SerializedMonoBehaviour
     private void Start()
     {
         ResetShotCounter();
-    }
-
-    private void Update()
-    {
-        ShotCounter -= Time.deltaTime;
         this.UpdateAsObservable()
             .Where(_ => ShotCounter <= 0f)
             .Subscribe(_ =>
@@ -28,6 +23,11 @@ public class Enemy : SerializedMonoBehaviour
                 Fire();
                 ResetShotCounter();
             });
+    }
+
+    private void Update()
+    {
+        ShotCounter -= Time.deltaTime;
     }
 
     private void ResetShotCounter()

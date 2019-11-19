@@ -135,12 +135,12 @@ MonoBehaviour:
     - Name: ProjectileSpeed
       Entry: 4
       Data: 20
-    - Name: TimeBetweenShots
+    - Name: TimeBetweenShoots
       Entry: 7
       Data: UnityEngine.Vector2, UnityEngine.CoreModule
     - Name: 
       Entry: 4
-      Data: 0.288461536
+      Data: 0.256410271
     - Name: 
       Entry: 4
       Data: 3.07692313
