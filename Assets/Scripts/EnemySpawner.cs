@@ -8,7 +8,6 @@ public class EnemySpawner : SerializedMonoBehaviour
 {
     [OdinSerialize] private List<WaveConfig> WaveConfigs { get; set; }
     [OdinSerialize] private int StartingWave { get; set; }
-
     [OdinSerialize] private bool Looping { get; set; } = false;
 
     private IEnumerator Start()

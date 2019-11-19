@@ -189,6 +189,9 @@ MonoBehaviour:
     - Name: StartingWave
       Entry: 3
       Data: 0
+    - Name: Looping
+      Entry: 5
+      Data: true
 --- !u!4 &193710037
 Transform:
   m_ObjectHideFlags: 0
