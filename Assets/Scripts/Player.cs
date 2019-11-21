@@ -8,8 +8,12 @@ using UnityEngine;
 
 public class Player : SerializedMonoBehaviour
 {
+    [Title("Player")]
     [OdinSerialize] private float Speed { get; set; } = 10;
     [OdinSerialize] private GameObject LaserPrefab { get; set; }
+    [OdinSerialize] private int Health { get; set; }
+    
+    [Title("Projectile")]
     [OdinSerialize] private float ProjectileSpeed { get; set; } = 20;
     [OdinSerialize] private float ProjectileFiringPeriod { get; set; } = 0.1f;
 
@@ -92,7 +96,9 @@ public class Player : SerializedMonoBehaviour
     {
         while (true)
         {
-            var laser = Instantiate(LaserPrefab, transform.position, Quaternion.identity);
+            var position = transform.position;
+            var newPosition = new Vector2( position.x,  position.y + 1);
+            var laser = Instantiate(LaserPrefab, newPosition , Quaternion.identity);
             laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, ProjectileSpeed);
             yield return new WaitForSeconds(ProjectileFiringPeriod);
         }
@@ -118,5 +124,18 @@ public class Player : SerializedMonoBehaviour
             onePoint.x - size.x,
             zeroPoint.y + size.y,
             onePoint.y - size.y);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        var damageDealer = other.GetComponent<DamageDealer>();
+        if (damageDealer) ProcessHit(damageDealer);
+    }
+
+    private void ProcessHit(DamageDealer damageDealer)
+    {
+        Health -= damageDealer.Damage;
+        if(Health <= 0) Destroy(gameObject);
+        damageDealer.Hit();
     }
 }

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3091251817089188608}
   - component: {fileID: 3091251817089188623}
   - component: {fileID: 3091251817089188609}
+  - component: {fileID: 2910466148640631115}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -109,9 +110,60 @@ MonoBehaviour:
     - Name: LaserPrefab
       Entry: 10
       Data: 0
+    - Name: Health
+      Entry: 3
+      Data: 200
     - Name: ProjectileSpeed
       Entry: 4
       Data: 15
     - Name: ProjectileFiringPeriod
       Entry: 4
       Data: 0.1
+--- !u!60 &2910466148640631115
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3091251817089188622}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.99, y: 0.75}
+    newSize: {x: 0.99, y: 0.75}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.49499995, y: 0.054348946}
+      - {x: 0.44174367, y: 0.058350086}
+      - {x: 0.40759027, y: 0.006966114}
+      - {x: 0.35680634, y: -0.017709255}
+      - {x: 0.1207425, y: 0.11877251}
+      - {x: 0.09897077, y: 0.27218485}
+      - {x: 0.07550454, y: 0.37128115}
+      - {x: -0.082689196, y: 0.36384487}
+      - {x: -0.12268919, y: 0.121281624}
+      - {x: -0.35246104, y: -0.013516903}
+      - {x: -0.40630168, y: 0.001786232}
+      - {x: -0.44362783, y: 0.06790686}
+      - {x: -0.49128148, y: 0.0540967}
+      - {x: -0.46047086, y: -0.23376846}
+      - {x: -0.4280676, y: -0.24871874}
+      - {x: -0.41012612, y: -0.20319366}
+      - {x: -0.14128155, y: -0.2801261}
+      - {x: -0.065252334, y: -0.375}
+      - {x: 0.073122025, y: -0.37819576}
+      - {x: 0.14218462, y: -0.27088308}
+      - {x: 0.4074571, y: -0.21806717}
+      - {x: 0.45499998, y: -0.265}
+      - {x: 0.46525222, y: -0.24012613}
