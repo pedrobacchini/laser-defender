@@ -12,6 +12,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyLaser
       objectReference: {fileID: 0}
+    - target: {fileID: 4234031666685152556, guid: d5134977e114bb449a671c9163e3b859,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 4234031666685152558, guid: d5134977e114bb449a671c9163e3b859,
         type: 3}
       propertyPath: m_LocalPosition.x

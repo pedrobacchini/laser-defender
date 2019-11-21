@@ -7,11 +7,14 @@ using Random = UnityEngine.Random;
 
 public class Enemy : SerializedMonoBehaviour
 {
+    [Title("Enemy")]
     [OdinSerialize] private float Health { get; set; } = 100f;
+
+    [Title("Laser")]
     [ReadOnly] [OdinSerialize] private float ShotCounter { get; set; }
-    [OdinSerialize] private float ProjectileSpeed { get; set; } = 20;
-    [MinMaxSlider(0, 5)] [OdinSerialize] private Vector2 TimeBetweenShoots { get; set; }
     [OdinSerialize] private GameObject LaserPrefab { get; set; }
+    [OdinSerialize] private float LaserSpeed { get; set; } = 8;
+    [MinMaxSlider(0, 5)] [OdinSerialize] private Vector2 TimeBetweenShoots { get; set; }
 
     private void Start()
     {
@@ -39,7 +42,7 @@ public class Enemy : SerializedMonoBehaviour
     {
         var position = transform.position;
         var laser = Instantiate(LaserPrefab, new Vector2(position.x, position.y - 1), Quaternion.identity);
-        laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -ProjectileSpeed);
+        laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -LaserSpeed);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

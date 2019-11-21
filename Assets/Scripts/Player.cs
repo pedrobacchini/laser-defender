@@ -10,12 +10,12 @@ public class Player : SerializedMonoBehaviour
 {
     [Title("Player")]
     [OdinSerialize] private float Speed { get; set; } = 10;
-    [OdinSerialize] private GameObject LaserPrefab { get; set; }
     [OdinSerialize] private int Health { get; set; }
     
-    [Title("Projectile")]
-    [OdinSerialize] private float ProjectileSpeed { get; set; } = 20;
-    [OdinSerialize] private float ProjectileFiringPeriod { get; set; } = 0.1f;
+    [Title("Laser")]
+    [OdinSerialize] private GameObject LaserPrefab { get; set; }
+    [OdinSerialize] private float LaserSpeed { get; set; } = 15;
+    [OdinSerialize] private float LaserFiringPeriod { get; set; } = 0.1f;
 
     private Boundary _boundary;
 
@@ -62,11 +62,11 @@ public class Player : SerializedMonoBehaviour
 //            .Where(_ => Input.GetButton("Fire1"))
 //            .Select(_ => Instantiate(LaserPrefab, transform.position, Quaternion.identity))
 //            .Select(laser => laser.GetComponent<Rigidbody2D>())
-//            .Select(rigidbody2dLaser => rigidbody2dLaser.velocity = new Vector2(0, ProjectileSpeed))
+//            .Select(rigidbody2dLaser => rigidbody2dLaser.velocity = new Vector2(0, LaserSpeed))
 //            .Subscribe();
 
-//            .TimeInterval(TimeSpan.FromSeconds(ProjectileFiringPeriod))
-//            .Delay(TimeSpan.FromSeconds(ProjectileFiringPeriod))
+//            .TimeInterval(TimeSpan.FromSeconds(LaserFiringPeriod))
+//            .Delay(TimeSpan.FromSeconds(LaserFiringPeriod))
 //            .Subscribe();
 
 //        this.UpdateAsObservable()
@@ -96,11 +96,9 @@ public class Player : SerializedMonoBehaviour
     {
         while (true)
         {
-            var position = transform.position;
-            var newPosition = new Vector2( position.x,  position.y + 1);
-            var laser = Instantiate(LaserPrefab, newPosition , Quaternion.identity);
-            laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, ProjectileSpeed);
-            yield return new WaitForSeconds(ProjectileFiringPeriod);
+            var laser = Instantiate(LaserPrefab, transform.position , Quaternion.identity);
+            laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, LaserSpeed);
+            yield return new WaitForSeconds(LaserFiringPeriod);
         }
     }
 
@@ -134,8 +132,8 @@ public class Player : SerializedMonoBehaviour
 
     private void ProcessHit(DamageDealer damageDealer)
     {
+        damageDealer.Hit();
         Health -= damageDealer.Damage;
         if(Health <= 0) Destroy(gameObject);
-        damageDealer.Hit();
     }
 }
