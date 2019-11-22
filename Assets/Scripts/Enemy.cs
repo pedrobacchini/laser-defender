@@ -7,14 +7,19 @@ using Random = UnityEngine.Random;
 
 public class Enemy : SerializedMonoBehaviour
 {
-    [Title("Enemy")]
-    [OdinSerialize] private float Health { get; set; } = 100f;
+    [Title("Enemy")] [OdinSerialize] private float Health { get; set; } = 100f;
 
     [Title("Laser")]
-    [ReadOnly] [OdinSerialize] private float ShotCounter { get; set; }
+    [ReadOnly]
+    [OdinSerialize]
+    private float ShotCounter { get; set; }
+
     [OdinSerialize] private GameObject LaserPrefab { get; set; }
     [OdinSerialize] private float LaserSpeed { get; set; } = 8;
     [MinMaxSlider(0, 5)] [OdinSerialize] private Vector2 TimeBetweenShoots { get; set; }
+
+    [Title("VFX")] [OdinSerialize] private GameObject DeathPrefab { get; set; }
+    [OdinSerialize] private float DurationOfExplosion { get; set; } = 0.8f;
 
     private void Start()
     {
@@ -55,6 +60,14 @@ public class Enemy : SerializedMonoBehaviour
     {
         damageDealer.Hit();
         Health -= damageDealer.Damage;
-        if (Health <= 0) Destroy(gameObject);
+        if (Health <= 0) Die();
+    }
+
+    private void Die()
+    {
+        Destroy(gameObject);
+        var transform1 = transform;
+        var explosion = Instantiate(DeathPrefab, transform1.position, transform1.rotation);
+        Destroy(explosion, DurationOfExplosion);
     }
 }

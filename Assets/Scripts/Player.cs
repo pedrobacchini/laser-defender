@@ -41,22 +41,22 @@ public class Player : SerializedMonoBehaviour
 
         var isShooting = false;
 
-        axisObservable
-            .Select(axis => !axis.Equals(Vector2.zero))
-            .Subscribe(isMoving =>
-            {
-                if (!isMoving && !isShooting)
-                {
-                    _firingCoroutine = StartCoroutine(FireContinuously());
-                    isShooting = true;
-                }
-
-                if (isMoving && isShooting)
-                {
-                    StopCoroutine(_firingCoroutine);
-                    isShooting = false;
-                }
-            });
+//        axisObservable
+//            .Select(axis => !axis.Equals(Vector2.zero))
+//            .Subscribe(isMoving =>
+//            {
+//                if (!isMoving && !isShooting)
+//                {
+//                    _firingCoroutine = StartCoroutine(FireContinuously());
+//                    isShooting = true;
+//                }
+//
+//                if (isMoving && isShooting)
+//                {
+//                    StopCoroutine(_firingCoroutine);
+//                    isShooting = false;
+//                }
+//            });
 
 //        this.UpdateAsObservable()
 //            .Where(_ => Input.GetButton("Fire1"))
@@ -69,13 +69,13 @@ public class Player : SerializedMonoBehaviour
 //            .Delay(TimeSpan.FromSeconds(LaserFiringPeriod))
 //            .Subscribe();
 
-//        this.UpdateAsObservable()
-//            .Where(_ => Input.GetButtonDown("Fire1"))
-//            .Subscribe(_ => _firingCoroutine = StartCoroutine(FireContinuously()));
-//        
-//        this.UpdateAsObservable()
-//            .Where(_ => Input.GetButtonUp("Fire1"))
-//            .Subscribe(_ => StopCoroutine(_firingCoroutine));
+        this.UpdateAsObservable()
+            .Where(_ => Input.GetButtonDown("Fire1"))
+            .Subscribe(_ => _firingCoroutine = StartCoroutine(FireContinuously()));
+        
+        this.UpdateAsObservable()
+            .Where(_ => Input.GetButtonUp("Fire1"))
+            .Subscribe(_ => StopCoroutine(_firingCoroutine));
     }
 
     private Coroutine _firingCoroutine;

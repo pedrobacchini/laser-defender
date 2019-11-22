@@ -107,18 +107,18 @@ MonoBehaviour:
     - Name: Speed
       Entry: 4
       Data: 20
-    - Name: LaserPrefab
-      Entry: 10
-      Data: 0
     - Name: Health
       Entry: 3
       Data: 200
-    - Name: ProjectileSpeed
+    - Name: LaserPrefab
+      Entry: 10
+      Data: 0
+    - Name: LaserSpeed
       Entry: 4
       Data: 15
-    - Name: ProjectileFiringPeriod
+    - Name: LaserFiringPeriod
       Entry: 4
-      Data: 0.1
+      Data: 0.05
 --- !u!60 &2910466148640631115
 PolygonCollider2D:
   m_ObjectHideFlags: 0
