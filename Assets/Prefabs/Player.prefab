@@ -95,30 +95,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
+    SerializedFormat: 0
+    SerializedBytes: 1f000500000053706565640000a0411700060000004865616c7468c80000000b000b0000004c61736572507265666162000000001f000a0000004c617365725370656564000070411f00110000004c61736572466972696e67506572696f64cdcc4c3d2b000e00000053686f6f74696e6750617573656401
     ReferencedUnityObjects:
     - {fileID: 4234031666685152556, guid: d5134977e114bb449a671c9163e3b859, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes:
-    - Name: Speed
-      Entry: 4
-      Data: 20
-    - Name: Health
-      Entry: 3
-      Data: 200
-    - Name: LaserPrefab
-      Entry: 10
-      Data: 0
-    - Name: LaserSpeed
-      Entry: 4
-      Data: 15
-    - Name: LaserFiringPeriod
-      Entry: 4
-      Data: 0.05
+    SerializationNodes: []
 --- !u!60 &2910466148640631115
 PolygonCollider2D:
   m_ObjectHideFlags: 0

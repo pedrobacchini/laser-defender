@@ -17,6 +17,8 @@ public class Player : SerializedMonoBehaviour
     [OdinSerialize] private float LaserSpeed { get; set; } = 15;
     [OdinSerialize] private float LaserFiringPeriod { get; set; } = 0.1f;
 
+    [OdinSerialize] private bool ShootingPaused { get; set; } = false;
+
     private Boundary _boundary;
 
     private void Start()
@@ -41,22 +43,23 @@ public class Player : SerializedMonoBehaviour
 
         var isShooting = false;
 
-//        axisObservable
-//            .Select(axis => !axis.Equals(Vector2.zero))
-//            .Subscribe(isMoving =>
-//            {
-//                if (!isMoving && !isShooting)
-//                {
-//                    _firingCoroutine = StartCoroutine(FireContinuously());
-//                    isShooting = true;
-//                }
-//
-//                if (isMoving && isShooting)
-//                {
-//                    StopCoroutine(_firingCoroutine);
-//                    isShooting = false;
-//                }
-//            });
+        axisObservable
+            .Where(_ => ShootingPaused)
+            .Select(axis => !axis.Equals(Vector2.zero))
+            .Subscribe(isMoving =>
+            {
+                if (!isMoving && !isShooting)
+                {
+                    _firingCoroutine = StartCoroutine(FireContinuously());
+                    isShooting = true;
+                }
+
+                if (isMoving && isShooting)
+                {
+                    StopCoroutine(_firingCoroutine);
+                    isShooting = false;
+                }
+            });
 
 //        this.UpdateAsObservable()
 //            .Where(_ => Input.GetButton("Fire1"))
@@ -70,27 +73,17 @@ public class Player : SerializedMonoBehaviour
 //            .Subscribe();
 
         this.UpdateAsObservable()
+            .Where(_ => !ShootingPaused)
             .Where(_ => Input.GetButtonDown("Fire1"))
             .Subscribe(_ => _firingCoroutine = StartCoroutine(FireContinuously()));
         
         this.UpdateAsObservable()
+            .Where(_ => !ShootingPaused)
             .Where(_ => Input.GetButtonUp("Fire1"))
             .Subscribe(_ => StopCoroutine(_firingCoroutine));
     }
 
     private Coroutine _firingCoroutine;
-
-//    private void Update()
-//    {
-//        if (Input.GetButtonDown("Fire1"))
-//        {
-//            _firingCoroutine = StartCoroutine(FireContinuously());
-//        }
-//        if (Input.GetButtonUp("Fire1"))
-//        {
-//            StopCoroutine(_firingCoroutine);
-//        }
-//    }
 
     private IEnumerator FireContinuously()
     {
