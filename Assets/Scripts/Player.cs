@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UniRx;
@@ -18,8 +17,7 @@ public class Player : SerializedMonoBehaviour
 
     [OdinSerialize] private bool ShootingPaused { get; set; } = false;
 
-    [Title("SFX")] 
-    [OdinSerialize] private AudioClip ShootingClip { get; set; }
+    [Title("SFX")] [OdinSerialize] private AudioClip ShootingClip { get; set; }
     [MinMaxSlider(0, 1)] [OdinSerialize] private Vector2 ShootingVolume { get; set; }
     [OdinSerialize] private AudioClip DeathClip { get; set; }
     [MinMaxSlider(0, 1)] [OdinSerialize] private Vector2 DeathClipVolume { get; set; }
@@ -48,60 +46,29 @@ public class Player : SerializedMonoBehaviour
             })
             .Subscribe(newPosition => transform.position = newPosition);
 
-        var isShooting = false;
-
+        // Stopped Shooting
         axisObservable
             .Where(_ => ShootingPaused)
-            .Select(axis => !axis.Equals(Vector2.zero))
-            .Subscribe(isMoving =>
-            {
-                if (!isMoving && !isShooting)
-                {
-                    _firingCoroutine = StartCoroutine(FireContinuously());
-                    isShooting = true;
-                }
+            .Sample(TimeSpan.FromSeconds(LaserFiringPeriod))
+            .Where(axis => axis.Equals(Vector2.zero))
+            .Subscribe(_ => Fire())
+            .AddTo(this);
 
-                if (isMoving && isShooting)
-                {
-                    StopCoroutine(_firingCoroutine);
-                    isShooting = false;
-                }
-            });
-
-//        this.UpdateAsObservable()
-//            .Where(_ => Input.GetButton("Fire1"))
-//            .Select(_ => Instantiate(LaserPrefab, transform.position, Quaternion.identity))
-//            .Select(laser => laser.GetComponent<Rigidbody2D>())
-//            .Select(rigidbody2dLaser => rigidbody2dLaser.velocity = new Vector2(0, LaserSpeed))
-//            .Subscribe();
-
-//            .TimeInterval(TimeSpan.FromSeconds(LaserFiringPeriod))
-//            .Delay(TimeSpan.FromSeconds(LaserFiringPeriod))
-//            .Subscribe();
-
-        this.UpdateAsObservable()
+        // Fire1 Shooting
+        Observable.EveryUpdate()
             .Where(_ => !ShootingPaused)
-            .Where(_ => Input.GetButtonDown("Fire1"))
-            .Subscribe(_ => _firingCoroutine = StartCoroutine(FireContinuously()));
-
-        this.UpdateAsObservable()
-            .Where(_ => !ShootingPaused)
-            .Where(_ => Input.GetButtonUp("Fire1"))
-            .Subscribe(_ => StopCoroutine(_firingCoroutine));
+            .Sample(TimeSpan.FromSeconds(LaserFiringPeriod))
+            .Where(_ => Input.GetButton("Fire1"))
+            .Subscribe(_ => Fire())
+            .AddTo(this);
     }
 
-    private Coroutine _firingCoroutine;
-
-    private IEnumerator FireContinuously()
+    private void Fire()
     {
-        while (true)
-        {
-            var laser = Instantiate(LaserPrefab, transform.position, Quaternion.identity);
-            laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, LaserSpeed);
-            AudioSource.PlayClipAtPoint(ShootingClip, _mainCamera.transform.position, 
-                Random.Range(ShootingVolume.x, ShootingVolume.y));
-            yield return new WaitForSeconds(LaserFiringPeriod);
-        }
+        var laser = Instantiate(LaserPrefab, transform.position, Quaternion.identity);
+        laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, LaserSpeed);
+        AudioSource.PlayClipAtPoint(ShootingClip, _mainCamera.transform.position,
+            Random.Range(ShootingVolume.x, ShootingVolume.y));
     }
 
     private void SetUpMoveBoundaries()
@@ -142,7 +109,7 @@ public class Player : SerializedMonoBehaviour
     private void Die()
     {
         Destroy(gameObject);
-        AudioSource.PlayClipAtPoint(DeathClip, _mainCamera.transform.position, 
+        AudioSource.PlayClipAtPoint(DeathClip, _mainCamera.transform.position,
             Random.Range(DeathClipVolume.x, DeathClipVolume.y));
     }
 }
