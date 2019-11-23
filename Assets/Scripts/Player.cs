@@ -109,8 +109,14 @@ public class Player : SerializedMonoBehaviour
 
     private void Die()
     {
+        // Destroy player
         Destroy(gameObject);
+
+        // Play death sound effect
         AudioSource.PlayClipAtPoint(DeathClip, _mainCamera.transform.position,
             Random.Range(DeathClipVolume.x, DeathClipVolume.y));
+
+        // Loading Game Over scene
+        Level.Instance.LoadGameOver();
     }
 }

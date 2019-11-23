@@ -1,8 +1,14 @@
-﻿using UnityEngine;
+﻿using System;
+using Sirenix.Serialization;
+using UniRx;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Level : MonoBehaviour
+[CreateAssetMenu(fileName = "New Level Manager", menuName = "Managers/Level Manager")]
+public class Level : SingletonScriptableObject<Level>
 {
+    [OdinSerialize] private float DelayGameOverInSeconds { get; set; } = 2f;
+
     public void LoadStartMenu()
     {
         SceneManager.LoadScene(0);
@@ -15,7 +21,9 @@ public class Level : MonoBehaviour
 
     public void LoadGameOver()
     {
-        SceneManager.LoadScene("Game Over");
+        // Wait some time and load a game over scene
+        Observable.Timer(TimeSpan.FromSeconds(DelayGameOverInSeconds))
+            .Subscribe(_ => SceneManager.LoadScene("Game Over"));
     }
 
     public void QuitGame()
