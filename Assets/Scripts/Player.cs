@@ -5,24 +5,31 @@ using Sirenix.Serialization;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Player : SerializedMonoBehaviour
 {
-    [Title("Player")]
-    [OdinSerialize] private float Speed { get; set; } = 10;
+    [Title("Player")] [OdinSerialize] private float Speed { get; set; } = 10;
     [OdinSerialize] private int Health { get; set; }
-    
-    [Title("Laser")]
-    [OdinSerialize] private GameObject LaserPrefab { get; set; }
+
+    [Title("Laser")] [OdinSerialize] private GameObject LaserPrefab { get; set; }
     [OdinSerialize] private float LaserSpeed { get; set; } = 15;
     [OdinSerialize] private float LaserFiringPeriod { get; set; } = 0.1f;
 
     [OdinSerialize] private bool ShootingPaused { get; set; } = false;
 
+    [Title("SFX")] 
+    [OdinSerialize] private AudioClip ShootingClip { get; set; }
+    [MinMaxSlider(0, 1)] [OdinSerialize] private Vector2 ShootingVolume { get; set; }
+    [OdinSerialize] private AudioClip DeathClip { get; set; }
+    [MinMaxSlider(0, 1)] [OdinSerialize] private Vector2 DeathClipVolume { get; set; }
+
     private Boundary _boundary;
+    private Camera _mainCamera;
 
     private void Start()
     {
+        _mainCamera = Camera.main;
         SetUpMoveBoundaries();
 
         var axisObservable = this.FixedUpdateAsObservable()
@@ -76,7 +83,7 @@ public class Player : SerializedMonoBehaviour
             .Where(_ => !ShootingPaused)
             .Where(_ => Input.GetButtonDown("Fire1"))
             .Subscribe(_ => _firingCoroutine = StartCoroutine(FireContinuously()));
-        
+
         this.UpdateAsObservable()
             .Where(_ => !ShootingPaused)
             .Where(_ => Input.GetButtonUp("Fire1"))
@@ -89,8 +96,10 @@ public class Player : SerializedMonoBehaviour
     {
         while (true)
         {
-            var laser = Instantiate(LaserPrefab, transform.position , Quaternion.identity);
+            var laser = Instantiate(LaserPrefab, transform.position, Quaternion.identity);
             laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, LaserSpeed);
+            AudioSource.PlayClipAtPoint(ShootingClip, _mainCamera.transform.position, 
+                Random.Range(ShootingVolume.x, ShootingVolume.y));
             yield return new WaitForSeconds(LaserFiringPeriod);
         }
     }
@@ -127,6 +136,13 @@ public class Player : SerializedMonoBehaviour
     {
         damageDealer.Hit();
         Health -= damageDealer.Damage;
-        if(Health <= 0) Destroy(gameObject);
+        if (Health <= 0) Die();
+    }
+
+    private void Die()
+    {
+        Destroy(gameObject);
+        AudioSource.PlayClipAtPoint(DeathClip, _mainCamera.transform.position, 
+            Random.Range(DeathClipVolume.x, DeathClipVolume.y));
     }
 }

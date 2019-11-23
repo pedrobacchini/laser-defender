@@ -95,15 +95,65 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 0
-    SerializedBytes: 1f000500000053706565640000a0411700060000004865616c7468c80000000b000b0000004c61736572507265666162000000001f000a0000004c617365725370656564000070411f00110000004c61736572466972696e67506572696f64cdcc4c3d2b000e00000053686f6f74696e6750617573656401
+    SerializedFormat: 2
+    SerializedBytes: 
     ReferencedUnityObjects:
     - {fileID: 4234031666685152556, guid: d5134977e114bb449a671c9163e3b859, type: 3}
+    - {fileID: 8300000, guid: ab68c0f47c4ef4a41a905a9e17fbb1f5, type: 3}
+    - {fileID: 8300000, guid: 8e56ea0699013457c9bc7f13b53cbfbd, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes: []
+    SerializationNodes:
+    - Name: Speed
+      Entry: 4
+      Data: 20
+    - Name: Health
+      Entry: 3
+      Data: 200
+    - Name: LaserPrefab
+      Entry: 10
+      Data: 0
+    - Name: LaserSpeed
+      Entry: 4
+      Data: 15
+    - Name: LaserFiringPeriod
+      Entry: 4
+      Data: 0.05
+    - Name: ShootingPaused
+      Entry: 5
+      Data: false
+    - Name: ShootingClip
+      Entry: 10
+      Data: 1
+    - Name: ShootingVolume
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0.0581395365
+    - Name: 
+      Entry: 4
+      Data: 0.151162788
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: DeathClip
+      Entry: 10
+      Data: 2
+    - Name: DeathClipVolume
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0.366279066
+    - Name: 
+      Entry: 4
+      Data: 0.656976759
+    - Name: 
+      Entry: 8
+      Data: 
 --- !u!60 &2910466148640631115
 PolygonCollider2D:
   m_ObjectHideFlags: 0

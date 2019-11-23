@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 0
+    SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
@@ -117,16 +117,78 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 0
-    SerializedBytes: 1f00060000004865616c74680000c8421f000b00000053686f74436f756e746572000000000b000b0000004c61736572507265666162000000001f000a0000004c6173657253706565640000004103001100000054696d654265747765656e53686f6f74732f00000000002b000000556e697479456e67696e652e566563746f72322c20556e697479456e67696e652e436f72654d6f64756c65203548833e204fec4440050b000b0000004465617468507265666162010000001f00130000004475726174696f6e4f664578706c6f73696f6ecdcc4c3f
+    SerializedFormat: 2
+    SerializedBytes: 
     ReferencedUnityObjects:
     - {fileID: 7139308894472526819, guid: f52fa70e10b2d4464a141ce4e6559f97, type: 3}
     - {fileID: 400600343035786508, guid: b06fce43e6b454ee189c89d56b713e0d, type: 3}
+    - {fileID: 8300000, guid: 68b4efa00f81b47d8aa3d2df8b151038, type: 3}
+    - {fileID: 8300000, guid: 0d89fed1fdcdf45cc9edd4d597643821, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes: []
+    SerializationNodes:
+    - Name: Health
+      Entry: 4
+      Data: 100
+    - Name: ShotCounter
+      Entry: 4
+      Data: 0
+    - Name: LaserPrefab
+      Entry: 10
+      Data: 0
+    - Name: LaserSpeed
+      Entry: 4
+      Data: 8
+    - Name: TimeBetweenShoots
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0.256410271
+    - Name: 
+      Entry: 4
+      Data: 3.07692313
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: DeathPrefab
+      Entry: 10
+      Data: 1
+    - Name: DurationOfExplosion
+      Entry: 4
+      Data: 0.8
+    - Name: ShootingClip
+      Entry: 10
+      Data: 2
+    - Name: ShootingVolume
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0.0465116277
+    - Name: 
+      Entry: 4
+      Data: 0.1744186
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: DeathClip
+      Entry: 10
+      Data: 3
+    - Name: DeathClipVolume
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0.418604642
+    - Name: 
+      Entry: 4
+      Data: 0.5988372
+    - Name: 
+      Entry: 8
+      Data: 
 --- !u!58 &1520942294738016890
 CircleCollider2D:
   m_ObjectHideFlags: 0

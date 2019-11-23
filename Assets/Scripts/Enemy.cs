@@ -20,9 +20,18 @@ public class Enemy : SerializedMonoBehaviour
 
     [Title("VFX")] [OdinSerialize] private GameObject DeathPrefab { get; set; }
     [OdinSerialize] private float DurationOfExplosion { get; set; } = 0.8f;
+    
+    [Title("SFX")] [OdinSerialize] private AudioClip ShootingClip { get; set; }
+    
+    [MinMaxSlider(0, 1)] [OdinSerialize] private Vector2 ShootingVolume { get; set; }
+    [OdinSerialize] private AudioClip DeathClip { get; set; }
+    [MinMaxSlider(0, 1)] [OdinSerialize] private Vector2 DeathClipVolume { get; set; }
 
+    private Camera _mainCamera;
+    
     private void Start()
     {
+        _mainCamera = Camera.main;
         ResetShotCounter();
         this.UpdateAsObservable()
             .Where(_ => ShotCounter <= 0f)
@@ -48,6 +57,8 @@ public class Enemy : SerializedMonoBehaviour
         var position = transform.position;
         var laser = Instantiate(LaserPrefab, new Vector2(position.x, position.y - 1), Quaternion.identity);
         laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -LaserSpeed);
+        AudioSource.PlayClipAtPoint(ShootingClip, _mainCamera.transform.position, 
+            Random.Range(ShootingVolume.x, ShootingVolume.y));
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -69,5 +80,6 @@ public class Enemy : SerializedMonoBehaviour
         var transform1 = transform;
         var explosion = Instantiate(DeathPrefab, transform1.position, transform1.rotation);
         Destroy(explosion, DurationOfExplosion);
+        AudioSource.PlayClipAtPoint(DeathClip, Camera.main.transform.position, Random.Range(DeathClipVolume.x, DeathClipVolume.y));
     }
 }
