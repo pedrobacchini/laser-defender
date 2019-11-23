@@ -44,7 +44,8 @@ public class Player : SerializedMonoBehaviour
                     _boundary.YMax);
                 return new Vector2(newXPos, newYPos);
             })
-            .Subscribe(newPosition => transform.position = newPosition);
+            .Subscribe(newPosition => transform.position = newPosition)
+            .AddTo(this);
 
         // Stopped Shooting
         axisObservable

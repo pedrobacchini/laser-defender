@@ -25,10 +25,12 @@ public class EnemyPathing : SerializedMonoBehaviour
                 var movementThisFrame = WaveConfig.MoveSpeed * Time.deltaTime;
                 transform.position = Vector2.MoveTowards(transform.position, targetPosition, movementThisFrame);
                 if (transform.position.Equals(wayPoints[_wayPointIndex + 1].position)) _wayPointIndex++;
-            });
+            })
+            .AddTo(this);
 
         this.UpdateAsObservable()
             .Where(_ => IsFinishMovement())
-            .Subscribe(_ => Destroy(gameObject));
+            .Subscribe(_ => Destroy(gameObject))
+            .AddTo(this);
     }
 }

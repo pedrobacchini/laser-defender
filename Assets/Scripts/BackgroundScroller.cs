@@ -15,8 +15,9 @@ public class BackgroundScroller : SerializedMonoBehaviour
         _material = GetComponent<MeshRenderer>().material;
         
         var offset = new Vector2(0, BackgroundSpeed);
-        
+
         this.UpdateAsObservable()
-            .Subscribe(_ => _material.mainTextureOffset += offset * Time.deltaTime);
+            .Subscribe(_ => _material.mainTextureOffset += offset * Time.deltaTime)
+            .AddTo(this);
     }
 }

@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 468d4f016849543d48a25dbd51eb3d04, type: 3}
+  m_Name: Wave 5
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 3671600392947575465, guid: aadc7c361a0314273a607509b33b7c15, type: 3}
+    - {fileID: 7634999895489637026, guid: fbac1ef5d2aa646feb2e0e72674ff365, type: 3}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: EnemyPrefab
+      Entry: 10
+      Data: 0
+    - Name: PathPrefab
+      Entry: 10
+      Data: 1
+    - Name: TimeBetweenSpawns
+      Entry: 4
+      Data: 0.5
+    - Name: SpawnRandomFactor
+      Entry: 4
+      Data: 0.3
+    - Name: NumberOfEnemies
+      Entry: 3
+      Data: 4
+    - Name: MoveSpeed
+      Entry: 4
+      Data: 5
