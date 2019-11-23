@@ -95,8 +95,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 0
-    SerializedBytes: 1f000500000053706565640000a0411700060000004865616c7468c80000000b000b0000004c61736572507265666162000000001f000a0000004c617365725370656564000070411f00110000004c61736572466972696e67506572696f640ad7a33d2b000e00000053686f6f74696e67506175736564000b000c00000053686f6f74696e67436c69700100000003000e00000053686f6f74696e67566f6c756d652f00000000002b000000556e697479456e67696e652e566563746f72322c20556e697479456e67696e652e436f72654d6f64756c6520b9236e3d206bca1a3e050b00090000004465617468436c69700200000003000f0000004465617468436c6970566f6c756d65300000000020ee88bb3e20a12f283f05
+    SerializedFormat: 2
+    SerializedBytes: 
     ReferencedUnityObjects:
     - {fileID: 4234031666685152556, guid: d5134977e114bb449a671c9163e3b859, type: 3}
     - {fileID: 8300000, guid: ab68c0f47c4ef4a41a905a9e17fbb1f5, type: 3}
@@ -105,7 +105,55 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes: []
+    SerializationNodes:
+    - Name: Speed
+      Entry: 4
+      Data: 20
+    - Name: Health
+      Entry: 3
+      Data: 200
+    - Name: LaserPrefab
+      Entry: 10
+      Data: 0
+    - Name: LaserSpeed
+      Entry: 4
+      Data: 15
+    - Name: LaserFiringPeriod
+      Entry: 4
+      Data: 0.08
+    - Name: ShootingPaused
+      Entry: 5
+      Data: false
+    - Name: ShootingClip
+      Entry: 10
+      Data: 1
+    - Name: ShootingVolume
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0.0581395365
+    - Name: 
+      Entry: 4
+      Data: 0.151162788
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: DeathClip
+      Entry: 10
+      Data: 2
+    - Name: DeathClipVolume
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0.366279066
+    - Name: 
+      Entry: 4
+      Data: 0.656976759
+    - Name: 
+      Entry: 8
+      Data: 
 --- !u!60 &2910466148640631115
 PolygonCollider2D:
   m_ObjectHideFlags: 0
