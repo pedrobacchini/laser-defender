@@ -117,6 +117,6 @@ public class Player : SerializedMonoBehaviour
             Random.Range(DeathClipVolume.x, DeathClipVolume.y));
 
         // Loading Game Over scene
-        Level.Instance.LoadGameOver();
+        LevelManager.Instance.LoadGameOver();
     }
 }

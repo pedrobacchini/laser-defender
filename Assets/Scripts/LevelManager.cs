@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 [CreateAssetMenu(fileName = "New Level Manager", menuName = "Managers/Level Manager")]
-public class Level : SingletonScriptableObject<Level>
+public class LevelManager : SingletonScriptableObject<LevelManager>
 {
     [OdinSerialize] private float DelayGameOverInSeconds { get; set; } = 2f;
 
