@@ -109,9 +109,18 @@ MonoBehaviour:
     - Name: Speed
       Entry: 4
       Data: 20
-    - Name: Health
+    - Name: MaxHealth
       Entry: 3
-      Data: 200
+      Data: 400
+    - Name: CurrentHealth
+      Entry: 7
+      Data: 0|UniRx.IntReactiveProperty, UniRx
+    - Name: value
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: LaserPrefab
       Entry: 10
       Data: 0

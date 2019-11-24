@@ -11,8 +11,13 @@ namespace Player
 {
     public class Player : SerializedMonoBehaviour
     {
-        [Title("Player Stats")] [OdinSerialize] private float Speed { get; set; } = 10;
-        [OdinSerialize] private int Health { get; set; }
+        [Title("Player Stats")]
+        [OdinSerialize]
+        private float Speed { get; set; } = 10;
+
+        [OdinSerialize] private int MaxHealth { get; set; }
+        
+        [OdinSerialize] [ReadOnly] public IntReactiveProperty CurrentHealth { get; private set; }
 
         [Title("Shooting")] [OdinSerialize] private GameObject LaserPrefab { get; set; }
         [OdinSerialize] private float LaserSpeed { get; set; } = 15;
@@ -20,7 +25,10 @@ namespace Player
 
         [OdinSerialize] private bool ShootingPaused { get; set; } = false;
 
-        [Title("Sound Effects")] [OdinSerialize] private AudioClip ShootingClip { get; set; }
+        [Title("Sound Effects")]
+        [OdinSerialize]
+        private AudioClip ShootingClip { get; set; }
+
         [MinMaxSlider(0, 1)] [OdinSerialize] private Vector2 ShootingVolume { get; set; }
         [OdinSerialize] private AudioClip DeathClip { get; set; }
         [MinMaxSlider(0, 1)] [OdinSerialize] private Vector2 DeathClipVolume { get; set; }
@@ -30,6 +38,7 @@ namespace Player
 
         private void Start()
         {
+            CurrentHealth.Value = MaxHealth;
             _mainCamera = Camera.main;
             SetUpMoveBoundaries();
 
@@ -38,15 +47,7 @@ namespace Player
 
             // Movement inputs tick on FixedUpdate
             axisObservable
-                .Select(axis =>
-                {
-                    var currentPosition = transform.position;
-                    var newXPos = Mathf.Clamp(currentPosition.x + axis.x * Time.deltaTime * Speed, _boundary.XMin,
-                        _boundary.XMax);
-                    var newYPos = Mathf.Clamp(currentPosition.y + axis.y * Time.deltaTime * Speed, _boundary.YMin,
-                        _boundary.YMax);
-                    return new Vector2(newXPos, newYPos);
-                })
+                .Select(CalculateNextPositionPlayer)
                 .Subscribe(newPosition => transform.position = newPosition)
                 .AddTo(this);
 
@@ -65,6 +66,16 @@ namespace Player
                 .Where(_ => Input.GetButton("Fire1"))
                 .Subscribe(_ => Shoot())
                 .AddTo(this);
+        }
+
+        private Vector2 CalculateNextPositionPlayer(Vector2 axis)
+        {
+            var currentPosition = transform.position;
+            var newXPos = Mathf.Clamp(currentPosition.x + axis.x * Time.deltaTime * Speed, _boundary.XMin,
+                _boundary.XMax);
+            var newYPos = Mathf.Clamp(currentPosition.y + axis.y * Time.deltaTime * Speed, _boundary.YMin,
+                _boundary.YMax);
+            return new Vector2(newXPos, newYPos);
         }
 
         private void Shoot()
@@ -106,8 +117,8 @@ namespace Player
         private void ProcessHit(DamageDealer damageDealer)
         {
             damageDealer.Hit();
-            Health -= damageDealer.Damage;
-            if (Health <= 0) Die();
+            CurrentHealth.Value -= damageDealer.Damage;
+            if (CurrentHealth.Value <= 0) Die();
         }
 
         private void Die()
