@@ -658,17 +658,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8312708363685508365, guid: 852e4b19cf224cf4694330c72e9eca66,
+        type: 3}
+      propertyPath: m_Name
+      value: Blue Background
+      objectReference: {fileID: 0}
     - target: {fileID: 4967667501636300922, guid: 852e4b19cf224cf4694330c72e9eca66,
         type: 3}
       propertyPath: serializationData.Prefab
       value: 
       objectReference: {fileID: 4967667501636300922, guid: 852e4b19cf224cf4694330c72e9eca66,
         type: 3}
-    - target: {fileID: 8312708363685508365, guid: 852e4b19cf224cf4694330c72e9eca66,
-        type: 3}
-      propertyPath: m_Name
-      value: Blue Background
-      objectReference: {fileID: 0}
     - target: {fileID: 8312708363685508361, guid: 852e4b19cf224cf4694330c72e9eca66,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1335,6 +1335,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6118945588085762080, guid: 612fa24a84d354840836d34cb11bc65d,
+        type: 3}
+      propertyPath: m_ScreenMatchMode
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 612fa24a84d354840836d34cb11bc65d, type: 3}

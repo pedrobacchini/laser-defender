@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6881115965157466478}
   - component: {fileID: 6881115965157466513}
   - component: {fileID: 6881115965157466515}
+  - component: {fileID: 1018392367}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -83,3 +84,28 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6881115965157466514}
   m_Enabled: 1
+--- !u!114 &1018392367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6881115965157466514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9d8652d984bd9f40bf8cb8c3b4f894b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 6285048593494649219, guid: 57aab069bd3c89447a4c8a1b4cd9db31, type: 3}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: MusicPlayerPrefab
+      Entry: 10
+      Data: 0
