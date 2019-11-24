@@ -51,6 +51,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: c6ea9bc58dcc9457a843e1c54f5fabd3, type: 2}
     - {fileID: 11400000, guid: 9187e110443ca4b6080eb5486e499426, type: 2}
     - {fileID: 11400000, guid: 4ebcf81914a264990b9461bb6d201176, type: 2}
+    - {fileID: 11400000, guid: f3ca558bf7e0a4005ba5ae9bc054b87a, type: 2}
+    - {fileID: 11400000, guid: 83268ff507e844651a18c263feed8452, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -61,7 +63,7 @@ MonoBehaviour:
       Data: 0|System.Collections.Generic.List`1[[WaveConfig, Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
-      Data: 4
+      Data: 6
     - Name: 
       Entry: 10
       Data: 0
@@ -74,6 +76,12 @@ MonoBehaviour:
     - Name: 
       Entry: 10
       Data: 3
+    - Name: 
+      Entry: 10
+      Data: 4
+    - Name: 
+      Entry: 10
+      Data: 5
     - Name: 
       Entry: 13
       Data: 

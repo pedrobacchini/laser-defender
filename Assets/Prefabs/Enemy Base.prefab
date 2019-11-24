@@ -134,13 +134,16 @@ MonoBehaviour:
     - Name: Health
       Entry: 4
       Data: 100
+    - Name: ScoreValue
+      Entry: 3
+      Data: 100
     - Name: ShotCounter
       Entry: 4
       Data: 0
-    - Name: LaserPrefab
+    - Name: ShootPrefab
       Entry: 10
       Data: 0
-    - Name: LaserSpeed
+    - Name: ShootSpeed
       Entry: 4
       Data: 8
     - Name: TimeBetweenShoots
@@ -148,10 +151,10 @@ MonoBehaviour:
       Data: UnityEngine.Vector2, UnityEngine.CoreModule
     - Name: 
       Entry: 4
-      Data: 0.256410271
+      Data: 1.34146357
     - Name: 
       Entry: 4
-      Data: 3.07692313
+      Data: 3.0352304
     - Name: 
       Entry: 8
       Data: 
@@ -161,7 +164,7 @@ MonoBehaviour:
     - Name: DurationOfExplosion
       Entry: 4
       Data: 0.8
-    - Name: ShootingClip
+    - Name: ShootingSound
       Entry: 10
       Data: 2
     - Name: ShootingVolume
@@ -176,18 +179,18 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: DeathClip
+    - Name: DeathSound
       Entry: 10
       Data: 3
-    - Name: DeathClipVolume
+    - Name: DeathSoundVolume
       Entry: 7
       Data: UnityEngine.Vector2, UnityEngine.CoreModule
     - Name: 
       Entry: 4
-      Data: 0.418604642
+      Data: 0.625112951
     - Name: 
       Entry: 4
-      Data: 0.5988372
+      Data: 0.8464318
     - Name: 
       Entry: 8
       Data: 

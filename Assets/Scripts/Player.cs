@@ -8,16 +8,16 @@ using Random = UnityEngine.Random;
 
 public class Player : SerializedMonoBehaviour
 {
-    [Title("Player")] [OdinSerialize] private float Speed { get; set; } = 10;
+    [Title("Player Stats")] [OdinSerialize] private float Speed { get; set; } = 10;
     [OdinSerialize] private int Health { get; set; }
 
-    [Title("Laser")] [OdinSerialize] private GameObject LaserPrefab { get; set; }
+    [Title("Shooting")] [OdinSerialize] private GameObject LaserPrefab { get; set; }
     [OdinSerialize] private float LaserSpeed { get; set; } = 15;
     [OdinSerialize] private float LaserFiringPeriod { get; set; } = 0.1f;
 
     [OdinSerialize] private bool ShootingPaused { get; set; } = false;
 
-    [Title("SFX")] [OdinSerialize] private AudioClip ShootingClip { get; set; }
+    [Title("Sound Effects")] [OdinSerialize] private AudioClip ShootingClip { get; set; }
     [MinMaxSlider(0, 1)] [OdinSerialize] private Vector2 ShootingVolume { get; set; }
     [OdinSerialize] private AudioClip DeathClip { get; set; }
     [MinMaxSlider(0, 1)] [OdinSerialize] private Vector2 DeathClipVolume { get; set; }
@@ -52,7 +52,7 @@ public class Player : SerializedMonoBehaviour
             .Where(_ => ShootingPaused)
             .Sample(TimeSpan.FromSeconds(LaserFiringPeriod))
             .Where(axis => axis.Equals(Vector2.zero))
-            .Subscribe(_ => Fire())
+            .Subscribe(_ => Shoot())
             .AddTo(this);
 
         // Fire1 Shooting
@@ -60,11 +60,11 @@ public class Player : SerializedMonoBehaviour
             .Where(_ => !ShootingPaused)
             .Sample(TimeSpan.FromSeconds(LaserFiringPeriod))
             .Where(_ => Input.GetButton("Fire1"))
-            .Subscribe(_ => Fire())
+            .Subscribe(_ => Shoot())
             .AddTo(this);
     }
 
-    private void Fire()
+    private void Shoot()
     {
         var laser = Instantiate(LaserPrefab, transform.position, Quaternion.identity);
         laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, LaserSpeed);
