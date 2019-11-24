@@ -254,4 +254,4 @@ MonoBehaviour:
     SerializationNodes:
     - Name: Damage
       Entry: 3
-      Data: 200
+      Data: 400
