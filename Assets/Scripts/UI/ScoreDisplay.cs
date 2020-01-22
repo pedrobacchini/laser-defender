@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using SingletonScriptableObject;
+using TMPro;
 using UniRx;
 using UnityEngine;
 
@@ -9,7 +10,7 @@ namespace UI
         private void Start()
         {
             var textMeshProUgui = GetComponent<TextMeshProUGUI>();
-            GameSession.GameSession.CurrentScore.Subscribe(currentScore => textMeshProUgui.text = currentScore.ToString()).AddTo(this);
+            GameSession.CurrentScore.Subscribe(currentScore => textMeshProUgui.text = currentScore.ToString()).AddTo(this);
         }
     }
 }

@@ -14,7 +14,7 @@ namespace Enemy
         private void Start()
         {
             var wayPoints = WaveConfig.WaveWayPoints;
-        
+
             transform.position = wayPoints[0].position;
 
             bool IsFinishMovement() => _wayPointIndex + 1 >= wayPoints.Count;
@@ -32,7 +32,11 @@ namespace Enemy
 
             this.UpdateAsObservable()
                 .Where(_ => IsFinishMovement())
-                .Subscribe(_ => Destroy(gameObject))
+                .Subscribe(_ =>
+                {
+                    EnemyRuntimeSet.Remove(GetComponent<Enemy>());
+                    Destroy(gameObject);
+                })
                 .AddTo(this);
         }
     }

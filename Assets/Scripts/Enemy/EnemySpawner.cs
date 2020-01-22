@@ -11,8 +11,27 @@ namespace Enemy
         [OdinSerialize] private List<WaveConfig> WaveConfigs { get; set; }
         [OdinSerialize] private int StartingWave { get; set; }
         [OdinSerialize] private bool Looping { get; set; } = false;
+        
+        private IEnumerator coroutine;
 
-        private IEnumerator Start()
+        void Start()
+        {
+            print("Starting " + Time.time);
+            coroutine = StartWaves();
+            StartCoroutine(coroutine);
+            print("Done " + Time.time);
+        }
+
+        void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                StopCoroutine(coroutine);
+                print("Stopped " + Time.time);
+            }
+        }
+
+        private IEnumerator StartWaves()
         {
             do
             {
@@ -32,9 +51,11 @@ namespace Enemy
         {
             for (var enemyCount = 0; enemyCount < currentWave.NumberOfEnemies; enemyCount++)
             {
-                var newEnemy = Instantiate(currentWave.EnemyPrefab, currentWave.WaveWayPoints[0].position, Quaternion.identity);
+                var newEnemy = Instantiate(currentWave.EnemyPrefab, currentWave.WaveWayPoints[0].position,
+                    Quaternion.identity);
                 newEnemy.GetComponent<EnemyPathing>().WaveConfig = currentWave;
-                yield return new WaitForSeconds(currentWave.TimeBetweenSpawns);   
+                EnemyRuntimeSet.Add(newEnemy.GetComponent<Enemy>());
+                yield return new WaitForSeconds(currentWave.TimeBetweenSpawns);
             }
         }
     }

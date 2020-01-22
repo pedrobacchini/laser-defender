@@ -1,4 +1,5 @@
 ﻿using System;
+using SingletonScriptableObject;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UniRx;
@@ -76,8 +77,8 @@ namespace Enemy
             // Damage effect
             _disposables.Clear();
             this.UpdateAsObservable()
-                .Select(_ => _spriteRenderer.color = new Color(166.0f/255.0f, 33.0f / 255.0f, 33.0f / 255.0f))
-                .Delay(TimeSpan.FromMilliseconds(100))
+                .Select(_ => _spriteRenderer.color = Color.red)
+                .Delay(TimeSpan.FromMilliseconds(40))
                 .Subscribe(_ => _spriteRenderer.color = _startColor)
                 .AddTo(_disposables);
             if (Health <= 0) Die();
@@ -85,7 +86,8 @@ namespace Enemy
 
         private void Die()
         {
-            GameSession.GameSession.AddScore(ScoreValue);
+            EnemyRuntimeSet.Remove(this);
+            GameSession.AddScore(ScoreValue);
             Destroy(gameObject);
             var transform1 = transform;
             var explosion = Instantiate(DeathPrefab, transform1.position, transform1.rotation);

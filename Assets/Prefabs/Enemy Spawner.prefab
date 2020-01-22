@@ -60,7 +60,8 @@ MonoBehaviour:
     SerializationNodes:
     - Name: WaveConfigs
       Entry: 7
-      Data: 0|System.Collections.Generic.List`1[[WaveConfig, Assembly-CSharp]], mscorlib
+      Data: 0|System.Collections.Generic.List`1[[Enemy.WaveConfig, Assembly-CSharp]],
+        mscorlib
     - Name: 
       Entry: 12
       Data: 6
@@ -94,3 +95,4 @@ MonoBehaviour:
     - Name: Looping
       Entry: 5
       Data: true
+  EnemyRuntimeSet: {fileID: 11400000, guid: 6adaaa080524943cc87e32386ee675d8, type: 2}

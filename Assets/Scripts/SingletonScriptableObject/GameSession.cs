@@ -3,7 +3,7 @@ using Sirenix.Serialization;
 using UniRx;
 using UnityEngine;
 
-namespace GameSession
+namespace SingletonScriptableObject
 {
     [CreateAssetMenu(fileName = "New Game Session", menuName = "Managers/Game Session")]
     public class GameSession : SingletonScriptableObject<GameSession>

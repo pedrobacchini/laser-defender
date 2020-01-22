@@ -243,12 +243,12 @@ PrefabInstance:
     - target: {fileID: 8927576987809262207, guid: 8bd4b82a0ad804fce9831dfdae623285,
         type: 3}
       propertyPath: m_Name
-      value: Enemy Spawner Test
+      value: Enemy Spawner Big
       objectReference: {fileID: 0}
     - target: {fileID: 8927576987809262207, guid: 8bd4b82a0ad804fce9831dfdae623285,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8927576987809262201, guid: 8bd4b82a0ad804fce9831dfdae623285,
         type: 3}
@@ -584,7 +584,7 @@ PrefabInstance:
     - target: {fileID: 3091251817089188608, guid: cbbf4ec88a98e3e4292b9b4cbd10ead6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -8
+      value: -9
       objectReference: {fileID: 0}
     - target: {fileID: 3091251817089188608, guid: cbbf4ec88a98e3e4292b9b4cbd10ead6,
         type: 3}
@@ -1140,7 +1140,7 @@ PrefabInstance:
     - target: {fileID: 8927576987809262207, guid: 8bd4b82a0ad804fce9831dfdae623285,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8927576987809262201, guid: 8bd4b82a0ad804fce9831dfdae623285,
         type: 3}
