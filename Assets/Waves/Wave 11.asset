@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 468d4f016849543d48a25dbd51eb3d04, type: 3}
-  m_Name: Wave 7
+  m_Name: Wave 9
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
     - {fileID: 7300203172319382166, guid: d75b01034ebe7074791d1453881554f4, type: 3}
-    - {fileID: 7634999895489637026, guid: efde9934b99b1df48854c4625cbddf68, type: 3}
+    - {fileID: 7634999895489637026, guid: 5b3f9b81dd50f478c8770698301888a2, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -31,7 +31,7 @@ MonoBehaviour:
       Data: 1
     - Name: TimeBetweenSpawns
       Entry: 4
-      Data: 1
+      Data: 2
     - Name: SpawnRandomFactor
       Entry: 4
       Data: 0.5

@@ -10,45 +10,30 @@ namespace Enemy
     {
         [OdinSerialize] private List<WaveConfig> WaveConfigs { get; set; }
         [OdinSerialize] private int StartingWave { get; set; }
-        [OdinSerialize] private bool Looping { get; set; } = false;
-        
-        private IEnumerator coroutine;
 
-        void Start()
+        private int _waveIndex;
+        private bool _spawnWaveIsRunning;
+
+        private void Start()
         {
-            print("Starting " + Time.time);
-            coroutine = StartWaves();
-            StartCoroutine(coroutine);
-            print("Done " + Time.time);
+            _waveIndex = StartingWave;
         }
 
-        void Update()
+        private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                StopCoroutine(coroutine);
-                print("Stopped " + Time.time);
-            }
+            if (EnemyRuntimeSet.Items.Count != 0 || _spawnWaveIsRunning) return;
+            NextWave();
         }
 
-        private IEnumerator StartWaves()
+        private void NextWave()
         {
-            do
-            {
-                yield return StartCoroutine(SpawnAllWaves());
-            } while (Looping);
+            StartCoroutine(SpawnAllEnemiesInWave(WaveConfigs[_waveIndex]));
+            _waveIndex = (_waveIndex + 1) % WaveConfigs.Count;
         }
 
-        private IEnumerator SpawnAllWaves()
+        private IEnumerator SpawnAllEnemiesInWave(WaveConfig currentWave)
         {
-            for (var waveIndex = StartingWave; waveIndex < WaveConfigs.Count; waveIndex++)
-            {
-                yield return StartCoroutine(SpawnAllEnemiesInWave(WaveConfigs[waveIndex]));
-            }
-        }
-
-        private static IEnumerator SpawnAllEnemiesInWave(WaveConfig currentWave)
-        {
+            _spawnWaveIsRunning = true;
             for (var enemyCount = 0; enemyCount < currentWave.NumberOfEnemies; enemyCount++)
             {
                 var newEnemy = Instantiate(currentWave.EnemyPrefab, currentWave.WaveWayPoints[0].position,
@@ -57,6 +42,8 @@ namespace Enemy
                 EnemyRuntimeSet.Add(newEnemy.GetComponent<Enemy>());
                 yield return new WaitForSeconds(currentWave.TimeBetweenSpawns);
             }
+
+            _spawnWaveIsRunning = false;
         }
     }
 }

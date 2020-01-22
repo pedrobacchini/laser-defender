@@ -21,22 +21,19 @@ namespace Enemy
 
             this.UpdateAsObservable()
                 .Where(_ => !IsFinishMovement())
-                .Subscribe(_ =>
+                .Select	(_ => wayPoints[_wayPointIndex + 1].position)
+                .Subscribe(nextPosition =>
                 {
-                    var targetPosition = wayPoints[_wayPointIndex + 1].position;
                     var movementThisFrame = WaveConfig.MoveSpeed * Time.deltaTime;
-                    transform.position = Vector2.MoveTowards(transform.position, targetPosition, movementThisFrame);
+                    transform.position = Vector2.MoveTowards(transform.position, nextPosition, movementThisFrame);
                     if (transform.position.Equals(wayPoints[_wayPointIndex + 1].position)) _wayPointIndex++;
                 })
                 .AddTo(this);
 
             this.UpdateAsObservable()
                 .Where(_ => IsFinishMovement())
-                .Subscribe(_ =>
-                {
-                    EnemyRuntimeSet.Remove(GetComponent<Enemy>());
-                    Destroy(gameObject);
-                })
+                .Select(_ => GetComponent<Enemy>())
+                .Subscribe(enemy => enemy.SelfDestroy())
                 .AddTo(this);
         }
     }

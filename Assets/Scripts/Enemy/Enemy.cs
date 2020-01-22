@@ -86,11 +86,9 @@ namespace Enemy
 
         private void Die()
         {
-            EnemyRuntimeSet.Remove(this);
             GameSession.AddScore(ScoreValue);
-            Destroy(gameObject);
-            var transform1 = transform;
-            var explosion = Instantiate(DeathPrefab, transform1.position, transform1.rotation);
+            SelfDestroy	();
+            var explosion = Instantiate(DeathPrefab, transform.position, transform.rotation);
             Destroy(explosion, DurationOfExplosion);
             AudioSource.PlayClipAtPoint(DeathSound, _mainCamera.transform.position,
                 Random.Range(DeathSoundVolume.x, DeathSoundVolume.y));
@@ -99,6 +97,12 @@ namespace Enemy
         private void OnDestroy()
         {
             _disposables.Clear();
+        }
+
+        public void SelfDestroy()
+        {
+            EnemyRuntimeSet.Remove(this);
+            Destroy(gameObject);
         }
     }
 }

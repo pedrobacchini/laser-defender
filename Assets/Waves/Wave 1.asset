@@ -37,7 +37,7 @@ MonoBehaviour:
       Data: 0.3
     - Name: NumberOfEnemies
       Entry: 3
-      Data: 3
+      Data: 6
     - Name: MoveSpeed
       Entry: 4
       Data: 5
