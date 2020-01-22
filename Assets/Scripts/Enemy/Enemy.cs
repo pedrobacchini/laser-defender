@@ -38,10 +38,15 @@ namespace Enemy
         [MinMaxSlider(0, 1)] [OdinSerialize] private Vector2 DeathSoundVolume { get; set; }
 
         private Camera _mainCamera;
+        private SpriteRenderer _spriteRenderer;
+        private Color _startColor;
+        private readonly CompositeDisposable _disposables = new CompositeDisposable();
 
         private void Start()
         {
             _mainCamera = Camera.main;
+            _spriteRenderer = GetComponent<SpriteRenderer>();
+            _startColor = _spriteRenderer.color;
             ShotCounter = Random.Range(TimeBetweenShoots.x, TimeBetweenShoots.y);
             this.UpdateAsObservable()
                 .Sample(TimeSpan.FromSeconds(ShotCounter))
@@ -68,6 +73,13 @@ namespace Enemy
         {
             damageDealer.Hit();
             Health -= damageDealer.Damage;
+            // Damage effect
+            _disposables.Clear();
+            this.UpdateAsObservable()
+                .Select(_ => _spriteRenderer.color = new Color(166.0f/255.0f, 33.0f / 255.0f, 33.0f / 255.0f))
+                .Delay(TimeSpan.FromMilliseconds(100))
+                .Subscribe(_ => _spriteRenderer.color = _startColor)
+                .AddTo(_disposables);
             if (Health <= 0) Die();
         }
 
@@ -80,6 +92,11 @@ namespace Enemy
             Destroy(explosion, DurationOfExplosion);
             AudioSource.PlayClipAtPoint(DeathSound, _mainCamera.transform.position,
                 Random.Range(DeathSoundVolume.x, DeathSoundVolume.y));
+        }
+
+        private void OnDestroy()
+        {
+            _disposables.Clear();
         }
     }
 }

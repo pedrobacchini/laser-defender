@@ -16,6 +16,8 @@ namespace Player
         private float Speed { get; set; } = 10;
 
         [OdinSerialize] private int MaxHealth { get; set; }
+
+        [OdinSerialize] private bool MovingVertical { get; set; } = false;
         
         [OdinSerialize] [ReadOnly] public IntReactiveProperty CurrentHealth { get; private set; }
 
@@ -75,7 +77,7 @@ namespace Player
                 _boundary.XMax);
             var newYPos = Mathf.Clamp(currentPosition.y + axis.y * Time.deltaTime * Speed, _boundary.YMin,
                 _boundary.YMax);
-            return new Vector2(newXPos, newYPos);
+            return new Vector2(newXPos, MovingVertical ? newYPos : currentPosition.y);
         }
 
         private void Shoot()
