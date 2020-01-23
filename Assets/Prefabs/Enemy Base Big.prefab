@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7300203172319382167}
   - component: {fileID: 3286357724643232477}
   - component: {fileID: -1227784222573310378}
+  - component: {fileID: -548580709844513350}
   - component: {fileID: 1520942294738016890}
   - component: {fileID: -4477679403842335532}
   - component: {fileID: -8358471488568053760}
@@ -98,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 0
+    SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
@@ -119,8 +120,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 0
-    SerializedBytes: 1f00060000004865616c74680000484417000a00000053636f726556616c7565cc0100001f000b00000053686f74436f756e746572000000000b000b00000053686f6f74507265666162000000001f000a00000053686f6f7453706565640000404003001100000054696d654265747765656e53686f6f74732f00000000002b000000556e697479456e67696e652e566563746f72322c20556e697479456e67696e652e436f72654d6f64756c65202f8b783f209d970540050b000b0000004465617468507265666162010000001f00130000004475726174696f6e4f664578706c6f73696f6ecdcc4c3f0b000d00000053686f6f74696e67536f756e640200000003000e00000053686f6f74696e67566f6c756d65300000000020fa823e3d20ca9a323e050b000a0000004465617468536f756e64030000000300100000004465617468536f756e64566f6c756d653000000000206707203f20c1af583f05
+    SerializedFormat: 2
+    SerializedBytes: 
     ReferencedUnityObjects:
     - {fileID: 7139308894472526819, guid: 884a1f7e0b735ea47872cd337138d314, type: 3}
     - {fileID: 400600343035786508, guid: b06fce43e6b454ee189c89d56b713e0d, type: 3}
@@ -130,7 +131,129 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes: []
+    SerializationNodes:
+    - Name: Health
+      Entry: 4
+      Data: 800
+    - Name: ScoreValue
+      Entry: 3
+      Data: 460
+    - Name: ShotCounter
+      Entry: 4
+      Data: 0
+    - Name: ShootPrefab
+      Entry: 10
+      Data: 0
+    - Name: ShootSpeed
+      Entry: 4
+      Data: 3
+    - Name: TimeBetweenShoots
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0.9708738
+    - Name: 
+      Entry: 4
+      Data: 2.08737874
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: DeathPrefab
+      Entry: 10
+      Data: 1
+    - Name: DurationOfExplosion
+      Entry: 4
+      Data: 0.8
+    - Name: ShootingSound
+      Entry: 10
+      Data: 2
+    - Name: ShootingVolume
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0.0465116277
+    - Name: 
+      Entry: 4
+      Data: 0.1744186
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: DeathSound
+      Entry: 10
+      Data: 3
+    - Name: DeathSoundVolume
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0.625112951
+    - Name: 
+      Entry: 4
+      Data: 0.8464318
+    - Name: 
+      Entry: 8
+      Data: 
+--- !u!114 &-548580709844513350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7300203172319382166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 704e65931c0f4679984a55e021beced6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 7139308894472526819, guid: 884a1f7e0b735ea47872cd337138d314, type: 3}
+    - {fileID: 8300000, guid: 137b97a0287fe8f43b919a4fab02cb7f, type: 3}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: ShotCounter
+      Entry: 4
+      Data: 0
+    - Name: ShootPrefab
+      Entry: 10
+      Data: 0
+    - Name: ShootSpeed
+      Entry: 4
+      Data: 0.8
+    - Name: TimeBetweenShoots
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0.9292897
+    - Name: 
+      Entry: 4
+      Data: 2.0158937
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ShootingSound
+      Entry: 10
+      Data: 1
+    - Name: ShootingVolume
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0.0431398079
+    - Name: 
+      Entry: 4
+      Data: 0.17288357
+    - Name: 
+      Entry: 8
+      Data: 
 --- !u!58 &1520942294738016890
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -181,11 +304,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
-    SerializedFormat: 0
-    SerializedBytes: 17000600000044616d61676590010000
+    SerializedFormat: 2
+    SerializedBytes: 
     ReferencedUnityObjects: []
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes: []
+    SerializationNodes:
+    - Name: Damage
+      Entry: 3
+      Data: 400

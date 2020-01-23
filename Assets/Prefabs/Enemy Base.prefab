@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7300203172319382167}
   - component: {fileID: 3286357724643232477}
   - component: {fileID: -1227784222573310378}
+  - component: {fileID: -4656946236432223108}
   - component: {fileID: 1520942294738016890}
   - component: {fileID: -4477679403842335532}
   - component: {fileID: -8358471488568053760}
@@ -122,9 +123,7 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 7139308894472526819, guid: f52fa70e10b2d4464a141ce4e6559f97, type: 3}
     - {fileID: 400600343035786508, guid: b06fce43e6b454ee189c89d56b713e0d, type: 3}
-    - {fileID: 8300000, guid: 68b4efa00f81b47d8aa3d2df8b151038, type: 3}
     - {fileID: 8300000, guid: 0d89fed1fdcdf45cc9edd4d597643821, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
@@ -137,6 +136,50 @@ MonoBehaviour:
     - Name: ScoreValue
       Entry: 3
       Data: 100
+    - Name: DeathPrefab
+      Entry: 10
+      Data: 0
+    - Name: DurationOfExplosion
+      Entry: 4
+      Data: 0.8
+    - Name: DeathSound
+      Entry: 10
+      Data: 1
+    - Name: DeathSoundVolume
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0.625112951
+    - Name: 
+      Entry: 4
+      Data: 0.8464318
+    - Name: 
+      Entry: 8
+      Data: 
+--- !u!114 &-4656946236432223108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7300203172319382166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 704e65931c0f4679984a55e021beced6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 7139308894472526819, guid: f52fa70e10b2d4464a141ce4e6559f97, type: 3}
+    - {fileID: 8300000, guid: 68b4efa00f81b47d8aa3d2df8b151038, type: 3}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
     - Name: ShotCounter
       Entry: 4
       Data: 0
@@ -151,46 +194,25 @@ MonoBehaviour:
       Data: UnityEngine.Vector2, UnityEngine.CoreModule
     - Name: 
       Entry: 4
-      Data: 1.34146357
+      Data: 1.33473885
     - Name: 
       Entry: 4
-      Data: 3.0352304
+      Data: 3.08627963
     - Name: 
       Entry: 8
       Data: 
-    - Name: DeathPrefab
-      Entry: 10
-      Data: 1
-    - Name: DurationOfExplosion
-      Entry: 4
-      Data: 0.8
     - Name: ShootingSound
       Entry: 10
-      Data: 2
+      Data: 1
     - Name: ShootingVolume
       Entry: 7
       Data: UnityEngine.Vector2, UnityEngine.CoreModule
     - Name: 
       Entry: 4
-      Data: 0.0465116277
+      Data: 0.0463834032
     - Name: 
       Entry: 4
-      Data: 0.1744186
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: DeathSound
-      Entry: 10
-      Data: 3
-    - Name: DeathSoundVolume
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0.625112951
-    - Name: 
-      Entry: 4
-      Data: 0.8464318
+      Data: 0.17288357
     - Name: 
       Entry: 8
       Data: 

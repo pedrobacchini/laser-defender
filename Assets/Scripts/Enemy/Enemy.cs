@@ -15,15 +15,6 @@ namespace Enemy
 
         [OdinSerialize] private int ScoreValue { get; set; } = 100;
 
-        [Title("Shooting")]
-        [ReadOnly]
-        [OdinSerialize]
-        private float ShotCounter { get; set; }
-
-        [OdinSerialize] private GameObject ShootPrefab { get; set; }
-        [OdinSerialize] private float ShootSpeed { get; set; } = 8;
-        [MinMaxSlider(0, 5)] [OdinSerialize] private Vector2 TimeBetweenShoots { get; set; }
-
         [Title("Visual Effects")]
         [OdinSerialize]
         private GameObject DeathPrefab { get; set; }
@@ -31,10 +22,6 @@ namespace Enemy
         [OdinSerialize] private float DurationOfExplosion { get; set; } = 0.8f;
 
         [Title("Sound Effects")]
-        [OdinSerialize]
-        private AudioClip ShootingSound { get; set; }
-
-        [MinMaxSlider(0, 1)] [OdinSerialize] private Vector2 ShootingVolume { get; set; }
         [OdinSerialize] private AudioClip DeathSound { get; set; }
         [MinMaxSlider(0, 1)] [OdinSerialize] private Vector2 DeathSoundVolume { get; set; }
 
@@ -48,20 +35,6 @@ namespace Enemy
             _mainCamera = Camera.main;
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _startColor = _spriteRenderer.color;
-            ShotCounter = Random.Range(TimeBetweenShoots.x, TimeBetweenShoots.y);
-            this.UpdateAsObservable()
-                .Sample(TimeSpan.FromSeconds(ShotCounter))
-                .Subscribe(_ => Shoot())
-                .AddTo(this);
-        }
-
-        private void Shoot()
-        {
-            var position = transform.position;
-            var laser = Instantiate(ShootPrefab, new Vector2(position.x, position.y - 1), Quaternion.identity);
-            laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -ShootSpeed);
-            AudioSource.PlayClipAtPoint(ShootingSound, _mainCamera.transform.position,
-                Random.Range(ShootingVolume.x, ShootingVolume.y));
         }
 
         private void OnTriggerEnter2D(Collider2D other)
