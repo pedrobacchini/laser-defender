@@ -22,7 +22,9 @@ namespace Enemy
         [OdinSerialize] private float DurationOfExplosion { get; set; } = 0.8f;
 
         [Title("Sound Effects")]
-        [OdinSerialize] private AudioClip DeathSound { get; set; }
+        [OdinSerialize]
+        private AudioClip DeathSound { get; set; }
+
         [MinMaxSlider(0, 1)] [OdinSerialize] private Vector2 DeathSoundVolume { get; set; }
 
         private Camera _mainCamera;
@@ -60,7 +62,7 @@ namespace Enemy
         private void Die()
         {
             GameSession.AddScore(ScoreValue);
-            SelfDestroy	();
+            SelfDestroy();
             var explosion = Instantiate(DeathPrefab, transform.position, transform.rotation);
             Destroy(explosion, DurationOfExplosion);
             AudioSource.PlayClipAtPoint(DeathSound, _mainCamera.transform.position,

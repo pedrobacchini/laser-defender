@@ -57,6 +57,12 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: -8762930237340131933, guid: d5134977e114bb449a671c9163e3b859,
+        type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: -8762930237340131933, guid: d5134977e114bb449a671c9163e3b859,
+        type: 3}
     - target: {fileID: 4234031666685152558, guid: d5134977e114bb449a671c9163e3b859,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -116,7 +122,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 7a86089a2e1ced749b221b99f023e84a,
+      objectReference: {fileID: 21300000, guid: 593652b816712a6498bb2e41ba6a4276,
         type: 3}
     - target: {fileID: 4234031666685152557, guid: d5134977e114bb449a671c9163e3b859,
         type: 3}
@@ -138,12 +144,6 @@ PrefabInstance:
       propertyPath: m_BodyType
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8762930237340131933, guid: d5134977e114bb449a671c9163e3b859,
-        type: 3}
-      propertyPath: serializationData.Prefab
-      value: 
-      objectReference: {fileID: -8762930237340131933, guid: d5134977e114bb449a671c9163e3b859,
-        type: 3}
     m_RemovedComponents:
     - {fileID: -8652214136138071818, guid: d5134977e114bb449a671c9163e3b859, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d5134977e114bb449a671c9163e3b859, type: 3}

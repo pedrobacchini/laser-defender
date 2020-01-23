@@ -13,4 +13,10 @@ public class Spinner : SerializedMonoBehaviour
         this.UpdateAsObservable()
             .Subscribe(_ => transform.Rotate(new Vector3(0, 0 ,SpinnerSpeed * Time.deltaTime )));
     }
+    
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        var damageDealer = other.gameObject.GetComponent<DamageDealer>();
+        if (damageDealer) Destroy(gameObject); 
+    }
 }
