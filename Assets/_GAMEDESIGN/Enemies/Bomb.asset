@@ -1,0 +1,106 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9130ddcab86c4b1bad8b6f04694534fe, type: 3}
+  m_Name: Bomb
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 21300000, guid: bb9f361c5eb63bf48b503dd3704dd033, type: 3}
+    - {fileID: 7139308894472526819, guid: 884a1f7e0b735ea47872cd337138d314, type: 3}
+    - {fileID: 400600343035786508, guid: b06fce43e6b454ee189c89d56b713e0d, type: 3}
+    - {fileID: 8300000, guid: 68b4efa00f81b47d8aa3d2df8b151038, type: 3}
+    - {fileID: 8300000, guid: 0d89fed1fdcdf45cc9edd4d597643821, type: 3}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: Sprite
+      Entry: 10
+      Data: 0
+    - Name: Size
+      Entry: 7
+      Data: UnityEngine.Vector3, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 2
+    - Name: 
+      Entry: 4
+      Data: 2
+    - Name: 
+      Entry: 4
+      Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: MaxHealth
+      Entry: 4
+      Data: 1000
+    - Name: ScoreValue
+      Entry: 3
+      Data: 460
+    - Name: ShootPrefab
+      Entry: 10
+      Data: 1
+    - Name: ShootSpeed
+      Entry: 4
+      Data: 0.8
+    - Name: TimeBetweenShoots
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0.948035955
+    - Name: 
+      Entry: 4
+      Data: 1.99969065
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: DeathPrefab
+      Entry: 10
+      Data: 2
+    - Name: DurationOfExplosion
+      Entry: 4
+      Data: 0.8
+    - Name: ShootingSound
+      Entry: 10
+      Data: 3
+    - Name: ShootingVolume
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: DeathSound
+      Entry: 10
+      Data: 4
+    - Name: DeathSoundVolume
+      Entry: 7
+      Data: UnityEngine.Vector2, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0.0473244749
+    - Name: 
+      Entry: 4
+      Data: 0.171048567
+    - Name: 
+      Entry: 8
+      Data: 

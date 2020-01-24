@@ -9,7 +9,7 @@ namespace Enemy
     [CreateAssetMenu(menuName = "Enemy Wave Config")]
     public class WaveConfig : SerializedScriptableObject
     {
-        [OdinSerialize] public GameObject EnemyPrefab { get; private set; }
+        [OdinSerialize] public EnemyClass EnemyClass { get; private set; }
     
         [OdinSerialize] private GameObject PathPrefab { get; set; }
 

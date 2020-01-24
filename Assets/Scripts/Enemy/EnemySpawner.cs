@@ -10,6 +10,7 @@ namespace Enemy
     {
         [OdinSerialize] private List<WaveConfig> WaveConfigs { get; set; }
         [OdinSerialize] private int StartingWave { get; set; }
+        [OdinSerialize] public GameObject EnemyPrefabBase { get; private set; }
 
         private int _waveIndex;
         private bool _spawnWaveIsRunning;
@@ -36,8 +37,10 @@ namespace Enemy
             _spawnWaveIsRunning = true;
             for (var enemyCount = 0; enemyCount < currentWave.NumberOfEnemies; enemyCount++)
             {
-                var newEnemy = Instantiate(currentWave.EnemyPrefab, currentWave.WaveWayPoints[0].position,
+                var newEnemy = Instantiate(EnemyPrefabBase, currentWave.WaveWayPoints[0].position,
                     Quaternion.identity);
+                newEnemy.GetComponent<Enemy>().EnemyClass = currentWave.EnemyClass;
+                newEnemy.GetComponent<EnemyShooting>().EnemyClass = currentWave.EnemyClass;
                 newEnemy.GetComponent<EnemyPathing>().WaveConfig = currentWave;
                 EnemyRuntimeSet.Add(newEnemy.GetComponent<Enemy>());
                 yield return new WaitForSeconds(currentWave.TimeBetweenSpawns);

@@ -50,9 +50,14 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 4be5d70cd04fc45a3a28aee16eb56651, type: 2}
     - {fileID: 11400000, guid: c6ea9bc58dcc9457a843e1c54f5fabd3, type: 2}
     - {fileID: 11400000, guid: 9187e110443ca4b6080eb5486e499426, type: 2}
+    - {fileID: 11400000, guid: 4a3ccb7b24d6fb54b9ce8e98dcdc42bc, type: 2}
+    - {fileID: 11400000, guid: cf9cb6d5a3e7941f09f5ca99617d39a3, type: 2}
     - {fileID: 11400000, guid: 4ebcf81914a264990b9461bb6d201176, type: 2}
     - {fileID: 11400000, guid: f3ca558bf7e0a4005ba5ae9bc054b87a, type: 2}
     - {fileID: 11400000, guid: 83268ff507e844651a18c263feed8452, type: 2}
+    - {fileID: 11400000, guid: bb4fbfb46f6064a39bf56a72889fa00b, type: 2}
+    - {fileID: 11400000, guid: cfbe32a25f53e4c738c275f66911936a, type: 2}
+    - {fileID: 7300203172319382166, guid: 1beca046d3aef34429b54f8564450318, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -64,7 +69,7 @@ MonoBehaviour:
         mscorlib
     - Name: 
       Entry: 12
-      Data: 6
+      Data: 13
     - Name: 
       Entry: 10
       Data: 0
@@ -79,10 +84,31 @@ MonoBehaviour:
       Data: 3
     - Name: 
       Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 10
       Data: 4
     - Name: 
       Entry: 10
       Data: 5
+    - Name: 
+      Entry: 10
+      Data: 6
+    - Name: 
+      Entry: 10
+      Data: 7
+    - Name: 
+      Entry: 10
+      Data: 8
+    - Name: 
+      Entry: 10
+      Data: 9
     - Name: 
       Entry: 13
       Data: 
@@ -92,7 +118,6 @@ MonoBehaviour:
     - Name: StartingWave
       Entry: 3
       Data: 0
-    - Name: Looping
-      Entry: 5
-      Data: true
-  EnemyRuntimeSet: {fileID: 11400000, guid: 6adaaa080524943cc87e32386ee675d8, type: 2}
+    - Name: EnemyPrefabBase
+      Entry: 10
+      Data: 10

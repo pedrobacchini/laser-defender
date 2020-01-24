@@ -17,6 +17,7 @@ MonoBehaviour:
     SerializedBytes: 
     ReferencedUnityObjects:
     - {fileID: 3671600392947575465, guid: 4dd216966be3c46ce999e130b04afe1d, type: 3}
+    - {fileID: 11400000, guid: 6a44494b7adee40e38bed472b2a574ca, type: 2}
     - {fileID: 4753548992830413383, guid: 01650b3d48c394e02881dda3b340f2ca, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
@@ -26,9 +27,12 @@ MonoBehaviour:
     - Name: EnemyPrefab
       Entry: 10
       Data: 0
-    - Name: PathPrefab
+    - Name: EnemyClass
       Entry: 10
       Data: 1
+    - Name: PathPrefab
+      Entry: 10
+      Data: 2
     - Name: TimeBetweenSpawns
       Entry: 4
       Data: 0.5
@@ -40,4 +44,4 @@ MonoBehaviour:
       Data: 3
     - Name: MoveSpeed
       Entry: 4
-      Data: 5
+      Data: 8

@@ -1,7 +1,6 @@
 ﻿using System;
 using SingletonScriptableObject;
 using Sirenix.OdinInspector;
-using Sirenix.Serialization;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
@@ -11,22 +10,9 @@ namespace Enemy
 {
     public class Enemy : SerializedMonoBehaviour
     {
-        [Title("Enemy Stats")] [OdinSerialize] private float Health { get; set; } = 100f;
+        public EnemyClass EnemyClass { private get; set; }
 
-        [OdinSerialize] private int ScoreValue { get; set; } = 100;
-
-        [Title("Visual Effects")]
-        [OdinSerialize]
-        private GameObject DeathPrefab { get; set; }
-
-        [OdinSerialize] private float DurationOfExplosion { get; set; } = 0.8f;
-
-        [Title("Sound Effects")]
-        [OdinSerialize]
-        private AudioClip DeathSound { get; set; }
-
-        [MinMaxSlider(0, 1)] [OdinSerialize] private Vector2 DeathSoundVolume { get; set; }
-
+        private float _health;
         private Camera _mainCamera;
         private SpriteRenderer _spriteRenderer;
         private Color _startColor;
@@ -34,8 +20,11 @@ namespace Enemy
 
         private void Start()
         {
+            GetComponent<Transform>().localScale = EnemyClass.Size;
+            _health = EnemyClass.MaxHealth;
             _mainCamera = Camera.main;
             _spriteRenderer = GetComponent<SpriteRenderer>();
+            _spriteRenderer.sprite = EnemyClass.Sprite;
             _startColor = _spriteRenderer.color;
         }
 
@@ -48,7 +37,7 @@ namespace Enemy
         private void ProcessHit(DamageDealer damageDealer)
         {
             damageDealer.Hit();
-            Health -= damageDealer.Damage;
+            _health -= damageDealer.Damage;
             // Damage effect
             _disposables.Clear();
             this.UpdateAsObservable()
@@ -56,17 +45,17 @@ namespace Enemy
                 .Delay(TimeSpan.FromMilliseconds(40))
                 .Subscribe(_ => _spriteRenderer.color = _startColor)
                 .AddTo(_disposables);
-            if (Health <= 0) Die();
+            if (_health <= 0) Die();
         }
 
         private void Die()
         {
-            GameSession.AddScore(ScoreValue);
+            GameSession.AddScore(EnemyClass.ScoreValue);
             SelfDestroy();
-            var explosion = Instantiate(DeathPrefab, transform.position, transform.rotation);
-            Destroy(explosion, DurationOfExplosion);
-            AudioSource.PlayClipAtPoint(DeathSound, _mainCamera.transform.position,
-                Random.Range(DeathSoundVolume.x, DeathSoundVolume.y));
+            var explosion = Instantiate(EnemyClass.DeathPrefab, transform.position, transform.rotation);
+            Destroy(explosion, EnemyClass.DurationOfExplosion);
+            AudioSource.PlayClipAtPoint(EnemyClass.DeathSound, _mainCamera.transform.position,
+                Random.Range(EnemyClass.DeathSoundVolume.x, EnemyClass.DeathSoundVolume.y));
         }
 
         private void OnDestroy()

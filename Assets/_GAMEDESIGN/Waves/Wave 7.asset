@@ -16,14 +16,14 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 7300203172319382166, guid: d75b01034ebe7074791d1453881554f4, type: 3}
+    - {fileID: 11400000, guid: 4d4f8b0204f314310a8c7ac4f6e2ab3f, type: 2}
     - {fileID: 7634999895489637026, guid: efde9934b99b1df48854c4625cbddf68, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
-    - Name: EnemyPrefab
+    - Name: EnemyClass
       Entry: 10
       Data: 0
     - Name: PathPrefab
@@ -34,7 +34,7 @@ MonoBehaviour:
       Data: 1
     - Name: SpawnRandomFactor
       Entry: 4
-      Data: 0.5
+      Data: 0
     - Name: NumberOfEnemies
       Entry: 3
       Data: 3
