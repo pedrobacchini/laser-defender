@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 10d5b4ca348979345b41479fc0b6320d, type: 3}
-  m_Name: Game Session
+  m_Name: Game Master
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -21,12 +21,21 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
+    - Name: _delayGameOverInSeconds
+      Entry: 4
+      Data: 2
+    - Name: _pointsBossStage
+      Entry: 4
+      Data: 10000
     - Name: _currentScore
       Entry: 7
       Data: 0|UniRx.IntReactiveProperty, UniRx
     - Name: value
       Entry: 3
-      Data: 3300
+      Data: 10400
     - Name: 
       Entry: 8
       Data: 
+    - Name: _currentStage
+      Entry: 3
+      Data: 0

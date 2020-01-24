@@ -569,7 +569,7 @@ PrefabInstance:
     - target: {fileID: 3091251817089188609, guid: cbbf4ec88a98e3e4292b9b4cbd10ead6,
         type: 3}
       propertyPath: serializationData.PrefabModifications.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3091251817089188609, guid: cbbf4ec88a98e3e4292b9b4cbd10ead6,
         type: 3}
@@ -590,6 +590,11 @@ PrefabInstance:
     - target: {fileID: 3091251817089188609, guid: cbbf4ec88a98e3e4292b9b4cbd10ead6,
         type: 3}
       propertyPath: serializationData.PrefabModifications.Array.data[1]
+      value: '"path":"ShootingPaused","value":{"$id":0,"$type":"System.Boolean, mscorlib",false}'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3091251817089188609, guid: cbbf4ec88a98e3e4292b9b4cbd10ead6,
+        type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.data[2]
       value: '"path":"Speed","value":{"$id":0,"$type":"System.Single, mscorlib",10}'
       objectReference: {fileID: 0}
     - target: {fileID: 3091251817089188608, guid: cbbf4ec88a98e3e4292b9b4cbd10ead6,

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using SingletonScriptableObject;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UnityEngine;
@@ -23,7 +24,14 @@ namespace Enemy
         private void Update()
         {
             if (EnemyRuntimeSet.Items.Count != 0 || _spawnWaveIsRunning) return;
-            NextWave();
+            if (GameMaster.CurrentScore.Value >= GameMaster.PointsBossStage)
+            {
+                Debug.Log("Boss Battle");
+            }
+            else
+            {
+                NextWave();   
+            }
         }
 
         private void NextWave()

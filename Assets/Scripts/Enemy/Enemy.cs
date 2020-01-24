@@ -50,7 +50,7 @@ namespace Enemy
 
         private void Die()
         {
-            GameSession.AddScore(EnemyClass.ScoreValue);
+            GameMaster.AddScore(EnemyClass.ScoreValue);
             SelfDestroy();
             var explosion = Instantiate(EnemyClass.DeathPrefab, transform.position, transform.rotation);
             Destroy(explosion, EnemyClass.DurationOfExplosion);

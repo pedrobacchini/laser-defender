@@ -7,7 +7,7 @@ namespace SingletonScriptableObject
     {
         private void Start()
         {
-            GameSession.ResetGame();
+            GameMaster.ResetGame();
             EnemyRuntimeSet.Clear();
         }
     }

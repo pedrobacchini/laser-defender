@@ -10,7 +10,7 @@ namespace UI
         private void Start()
         {
             var textMeshProUgui = GetComponent<TextMeshProUGUI>();
-            GameSession.CurrentScore.Subscribe(currentScore => textMeshProUgui.text = currentScore.ToString()).AddTo(this);
+            GameMaster.CurrentScore.Subscribe(currentScore => textMeshProUgui.text = currentScore.ToString()).AddTo(this);
         }
     }
 }

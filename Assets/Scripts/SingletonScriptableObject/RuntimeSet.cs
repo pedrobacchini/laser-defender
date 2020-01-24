@@ -3,7 +3,7 @@ using Sirenix.OdinInspector;
 
 public abstract class RuntimeSet<T> : SingletonScriptableObject<RuntimeSet<T>>
 {
-    private List<T> _items = new List<T>();
+    private readonly List<T> _items = new List<T>();
 
     [ReadOnly] public static List<T> Items => Instance._items;
 

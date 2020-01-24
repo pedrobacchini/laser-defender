@@ -133,7 +133,7 @@ namespace Player
                 Random.Range(DeathClipVolume.x, DeathClipVolume.y));
 
             // Loading Game Over scene
-            LevelManager.Instance.LoadGameOver();
+            LevelManager.LoadGameOver();
         }
     }
 }

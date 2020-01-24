@@ -10,7 +10,7 @@ public class BoosBar : MonoBehaviour
     {
         _image = GetComponent<Image>();
         
-        GameSession.CurrentScore
+        GameMaster.CurrentScore
             .Subscribe(currentScore => _image.fillAmount = currentScore / 10000.0f)
             .AddTo(this);
     }
