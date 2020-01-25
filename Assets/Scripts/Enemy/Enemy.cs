@@ -10,22 +10,29 @@ namespace Enemy
 {
     public class Enemy : SerializedMonoBehaviour
     {
-        public EnemyClass EnemyClass { private get; set; }
-
+        private EnemyClass _enemyClass;
         private float _health;
         private Camera _mainCamera;
         private SpriteRenderer _spriteRenderer;
         private Color _startColor;
         private readonly CompositeDisposable _disposables = new CompositeDisposable();
+        private Transform _transform;
 
-        private void Start()
+        private void Awake()
         {
-            GetComponent<Transform>().localScale = EnemyClass.Size;
-            _health = EnemyClass.MaxHealth;
-            _mainCamera = Camera.main;
+            _transform = GetComponent<Transform>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
-            _spriteRenderer.sprite = EnemyClass.Sprite;
             _startColor = _spriteRenderer.color;
+        }
+
+        public void StartEnemy(EnemyClass enemyClass)
+        {
+            _mainCamera = Camera.main;
+            _enemyClass = enemyClass;
+            _transform.localScale = _enemyClass.Size;
+            _health = _enemyClass.MaxHealth;
+            _spriteRenderer.sprite = _enemyClass.Sprite;
+            _spriteRenderer.color = _startColor;
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -50,15 +57,15 @@ namespace Enemy
 
         private void Die()
         {
-            GameMaster.AddScore(EnemyClass.ScoreValue);
+            GameMaster.AddScore(_enemyClass.ScoreValue);
             SelfDestroy();
-            var explosion = Instantiate(EnemyClass.DeathPrefab, transform.position, transform.rotation);
-            Destroy(explosion, EnemyClass.DurationOfExplosion);
-            AudioSource.PlayClipAtPoint(EnemyClass.DeathSound, _mainCamera.transform.position,
-                Random.Range(EnemyClass.DeathSoundVolume.x, EnemyClass.DeathSoundVolume.y));
+            var explosion = Instantiate(_enemyClass.DeathPrefab, transform.position, transform.rotation);
+            Destroy(explosion, _enemyClass.DurationOfExplosion);
+            AudioSource.PlayClipAtPoint(_enemyClass.DeathSound, _mainCamera.transform.position,
+                Random.Range(_enemyClass.DeathSoundVolume.x, _enemyClass.DeathSoundVolume.y));
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
             _disposables.Clear();
         }
@@ -66,7 +73,7 @@ namespace Enemy
         public void SelfDestroy()
         {
             EnemyRuntimeSet.Remove(this);
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21013c1e2944c484283330d043aebfe9, type: 3}
-  m_Name: Level Manager
+  m_Script: {fileID: 11500000, guid: f0e47dc93c9524bc99ad21744ea85041, type: 3}
+  m_Name: Enemy Base
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2

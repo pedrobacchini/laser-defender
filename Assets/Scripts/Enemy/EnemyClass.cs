@@ -15,7 +15,7 @@ namespace Enemy
 
         [OdinSerialize] public int ScoreValue { get; private set; } = 100;
 
-        [Title("Shooting")] [OdinSerialize] public GameObject ShootPrefab { get; private set; }
+        [Title("Shooting")] [OdinSerialize] public PrefabTag ShootPrefabTag { get; private set; }
         [OdinSerialize] public float ShootSpeed { get; private set; } = 8;
         [MinMaxSlider(0, 5)] [OdinSerialize] public Vector2 TimeBetweenShoots { get; private set; }
 

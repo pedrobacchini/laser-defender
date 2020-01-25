@@ -1,5 +1,7 @@
 ﻿using System;
+using GameSystem.ObjectPool;
 using Scenario;
+using SingletonScriptableObject;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UniRx;
@@ -21,7 +23,7 @@ namespace Player
         
         [OdinSerialize] [ReadOnly] public IntReactiveProperty CurrentHealth { get; private set; }
 
-        [Title("Shooting")] [OdinSerialize] private GameObject LaserPrefab { get; set; }
+        [Title("Shooting")] [OdinSerialize] private PrefabTag LaserPrefabTag { get; set; }
         [OdinSerialize] private float LaserSpeed { get; set; } = 15;
         [OdinSerialize] private float LaserFiringPeriod { get; set; } = 0.1f;
 
@@ -82,7 +84,7 @@ namespace Player
 
         private void Shoot()
         {
-            var laser = Instantiate(LaserPrefab, transform.position, Quaternion.identity);
+            var laser = ObjectPooler.SpawnFromPool(LaserPrefabTag, transform.position, Quaternion.identity);
             laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, LaserSpeed);
             AudioSource.PlayClipAtPoint(ShootingClip, _mainCamera.transform.position,
                 Random.Range(ShootingVolume.x, ShootingVolume.y));
@@ -133,7 +135,7 @@ namespace Player
                 Random.Range(DeathClipVolume.x, DeathClipVolume.y));
 
             // Loading Game Over scene
-            LevelManager.LoadGameOver();
+            GameMaster.LoadGameOver();
         }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using GameSystem.ObjectPool;
 using Sirenix.OdinInspector;
 using UniRx;
 using UniRx.Triggers;
@@ -9,28 +10,35 @@ namespace Enemy
 {
     public class EnemyShooting : SerializedMonoBehaviour
     {
-        public EnemyClass EnemyClass { private get; set; }
-        
+        private EnemyClass _enemyClass;
         private Camera _mainCamera;
         private float _shotCounter;
-        
-        private void Start()
+        private readonly CompositeDisposable _disposables = new CompositeDisposable();
+
+        public void StartEnemyShooting(EnemyClass enemyClass)
         {
             _mainCamera = Camera.main;
-            _shotCounter = Random.Range(EnemyClass.TimeBetweenShoots.x, EnemyClass.TimeBetweenShoots.y);
+            _enemyClass = enemyClass;
+            _shotCounter = Random.Range(_enemyClass.TimeBetweenShoots.x, _enemyClass.TimeBetweenShoots.y);
             this.UpdateAsObservable()
                 .Sample(TimeSpan.FromSeconds(_shotCounter))
                 .Subscribe(_ => Shoot())
-                .AddTo(this);
+                .AddTo(_disposables);
         }
         
         private void Shoot()
         {
             var position = transform.position;
-            var laser = Instantiate(EnemyClass.ShootPrefab, new Vector2(position.x, position.y - 1), Quaternion.identity);
-            laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -EnemyClass.ShootSpeed);
-            AudioSource.PlayClipAtPoint(EnemyClass.ShootingSound, _mainCamera.transform.position,
-                Random.Range(EnemyClass.ShootingVolume.x, EnemyClass.ShootingVolume.y));
+            var laser = ObjectPooler.SpawnFromPool(_enemyClass.ShootPrefabTag, new Vector2(position.x, position.y - 1),
+                Quaternion.identity);
+            laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -_enemyClass.ShootSpeed);
+            AudioSource.PlayClipAtPoint(_enemyClass.ShootingSound, _mainCamera.transform.position,
+                Random.Range(_enemyClass.ShootingVolume.x, _enemyClass.ShootingVolume.y));
+        }
+
+        private void OnDisable()
+        {
+            _disposables.Clear();
         }
     }
 }

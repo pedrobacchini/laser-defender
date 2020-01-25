@@ -585,5 +585,23 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1516290555, guid: 612fa24a84d354840836d34cb11bc65d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: 039a3815419c1d74b9a643d822d1d85f,
+        type: 2}
+    - target: {fileID: 1516290555, guid: 612fa24a84d354840836d34cb11bc65d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 2043181873, guid: 612fa24a84d354840836d34cb11bc65d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: 039a3815419c1d74b9a643d822d1d85f,
+        type: 2}
+    - target: {fileID: 2043181873, guid: 612fa24a84d354840836d34cb11bc65d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: QuitGame
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 612fa24a84d354840836d34cb11bc65d, type: 3}

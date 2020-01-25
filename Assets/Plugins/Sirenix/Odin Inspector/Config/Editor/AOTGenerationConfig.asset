@@ -16,8 +16,20 @@ MonoBehaviour:
   deleteDllAfterBuilds: 1
   AutomateForAllAOTPlatforms: 1
   automateForPlatforms: 0900000014000000
-  lastScan: 637154099177558270
+  lastScan: 637155525251192420
   supportSerializedTypes:
+  - TypeName: Enemy.EnemyClass, Assembly-CSharp
+    IsCustom: 0
+    Emit: 1
+  - TypeName: SingletonScriptableObject.GameMaster+Stage, Assembly-CSharp
+    IsCustom: 0
+    Emit: 1
+  - TypeName: UnityEngine.Sprite, UnityEngine.CoreModule
+    IsCustom: 0
+    Emit: 1
+  - TypeName: UnityEngine.Vector3, UnityEngine.CoreModule
+    IsCustom: 0
+    Emit: 1
   - TypeName: UnityEngine.AudioClip, UnityEngine.AudioModule
     IsCustom: 0
     Emit: 1

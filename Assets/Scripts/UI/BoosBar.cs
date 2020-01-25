@@ -11,7 +11,7 @@ public class BoosBar : MonoBehaviour
         _image = GetComponent<Image>();
         
         GameMaster.CurrentScore
-            .Subscribe(currentScore => _image.fillAmount = currentScore / 10000.0f)
+            .Subscribe(currentScore => _image.fillAmount = currentScore / GameMaster.PointsBossStage)
             .AddTo(this);
     }
 }

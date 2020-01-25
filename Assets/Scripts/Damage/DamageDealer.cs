@@ -7,6 +7,6 @@ public class DamageDealer : SerializedMonoBehaviour
 
     public void Hit()
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }

@@ -1,0 +1,104 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b82aa28d2e691417a989527101dfccb5, type: 3}
+  m_Name: Object Pooler
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 11400000, guid: b427b6b23507e45c3b46c7f1bef021f2, type: 2}
+    - {fileID: 7300203172319382166, guid: 1beca046d3aef34429b54f8564450318, type: 3}
+    - {fileID: 11400000, guid: 43370c27c1d074252aafcb5a1c5ecab6, type: 2}
+    - {fileID: 4234031666685152556, guid: d5134977e114bb449a671c9163e3b859, type: 3}
+    - {fileID: 11400000, guid: 64a5bd19f8b7f4d35ae92514d026eaea, type: 2}
+    - {fileID: 7139308894472526819, guid: f52fa70e10b2d4464a141ce4e6559f97, type: 3}
+    - {fileID: 11400000, guid: 587ce5518e08045ceb6588315ee4bcce, type: 2}
+    - {fileID: 7139308894472526819, guid: 884a1f7e0b735ea47872cd337138d314, type: 3}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: Pools
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[GameSystem.ObjectPool.ObjectPooler+Pool,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 4
+    - Name: 
+      Entry: 7
+      Data: 1|GameSystem.ObjectPool.ObjectPooler+Pool, Assembly-CSharp
+    - Name: tag
+      Entry: 10
+      Data: 0
+    - Name: prefab
+      Entry: 10
+      Data: 1
+    - Name: size
+      Entry: 3
+      Data: 20
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 2|GameSystem.ObjectPool.ObjectPooler+Pool, Assembly-CSharp
+    - Name: tag
+      Entry: 10
+      Data: 2
+    - Name: prefab
+      Entry: 10
+      Data: 3
+    - Name: size
+      Entry: 3
+      Data: 20
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 3|GameSystem.ObjectPool.ObjectPooler+Pool, Assembly-CSharp
+    - Name: tag
+      Entry: 10
+      Data: 4
+    - Name: prefab
+      Entry: 10
+      Data: 5
+    - Name: size
+      Entry: 3
+      Data: 10
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 4|GameSystem.ObjectPool.ObjectPooler+Pool, Assembly-CSharp
+    - Name: tag
+      Entry: 10
+      Data: 6
+    - Name: prefab
+      Entry: 10
+      Data: 7
+    - Name: size
+      Entry: 3
+      Data: 40
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 

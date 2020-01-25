@@ -17,7 +17,7 @@ MonoBehaviour:
     SerializedBytes: 
     ReferencedUnityObjects:
     - {fileID: 21300000, guid: bb9f361c5eb63bf48b503dd3704dd033, type: 3}
-    - {fileID: 7139308894472526819, guid: 884a1f7e0b735ea47872cd337138d314, type: 3}
+    - {fileID: 11400000, guid: 587ce5518e08045ceb6588315ee4bcce, type: 2}
     - {fileID: 400600343035786508, guid: b06fce43e6b454ee189c89d56b713e0d, type: 3}
     - {fileID: 8300000, guid: 68b4efa00f81b47d8aa3d2df8b151038, type: 3}
     - {fileID: 8300000, guid: 0d89fed1fdcdf45cc9edd4d597643821, type: 3}
@@ -50,7 +50,7 @@ MonoBehaviour:
     - Name: ScoreValue
       Entry: 3
       Data: 460
-    - Name: ShootPrefab
+    - Name: ShootPrefabTag
       Entry: 10
       Data: 1
     - Name: ShootSpeed

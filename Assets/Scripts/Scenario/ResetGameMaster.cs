@@ -1,14 +1,12 @@
-﻿using Enemy;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace SingletonScriptableObject
 {
-    public class ResetSingletonScriptableObject : MonoBehaviour
+    public class ResetGameMaster : MonoBehaviour
     {
         private void Start()
         {
             GameMaster.ResetGame();
-            EnemyRuntimeSet.Clear();
         }
     }
 }

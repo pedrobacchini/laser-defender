@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 
 public abstract class RuntimeSet<T> : SingletonScriptableObject<RuntimeSet<T>>
 {
-    private readonly List<T> _items = new List<T>();
-
-    [ReadOnly] public static List<T> Items => Instance._items;
+    
+    [OdinSerialize] [ReadOnly] private List<T> _items = new List<T>();
+    public static List<T> Items => Instance._items;
 
     public static void Add(T thing)
     {
@@ -17,10 +18,5 @@ public abstract class RuntimeSet<T> : SingletonScriptableObject<RuntimeSet<T>>
     {
         if (Instance._items.Contains(thing))
             Instance._items.Remove(thing);
-    }
-
-    public static void Clear()
-    {
-        Instance._items.Clear();
     }
 }

@@ -7,12 +7,14 @@ namespace Enemy
 {
     public class EnemyPathing : SerializedMonoBehaviour
     {
-        public WaveConfig WaveConfig { get; set; }
-
         private int _wayPointIndex = 0;
+        
+        private readonly CompositeDisposable _disposables = new CompositeDisposable();
 
-        private void Start()
+        public void StartEnemyPathing(WaveConfig WaveConfig)
         {
+            _wayPointIndex = 0;
+            
             var wayPoints = WaveConfig.WaveWayPoints;
 
             transform.position = wayPoints[0].position;
@@ -28,13 +30,18 @@ namespace Enemy
                     transform.position = Vector2.MoveTowards(transform.position, nextPosition, movementThisFrame);
                     if (transform.position.Equals(wayPoints[_wayPointIndex + 1].position)) _wayPointIndex++;
                 })
-                .AddTo(this);
+                .AddTo(_disposables);
 
             this.UpdateAsObservable()
                 .Where(_ => IsFinishMovement())
                 .Select(_ => GetComponent<Enemy>())
                 .Subscribe(enemy => enemy.SelfDestroy())
-                .AddTo(this);
+                .AddTo(_disposables);
+        }
+        
+        private void OnDisable()
+        {
+            _disposables.Clear();
         }
     }
 }

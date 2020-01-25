@@ -98,7 +98,7 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 4234031666685152556, guid: d5134977e114bb449a671c9163e3b859, type: 3}
+    - {fileID: 11400000, guid: 43370c27c1d074252aafcb5a1c5ecab6, type: 2}
     - {fileID: 8300000, guid: ab68c0f47c4ef4a41a905a9e17fbb1f5, type: 3}
     - {fileID: 8300000, guid: 9c844155545944734b73ce93ea247dbe, type: 3}
     SerializedBytesString: 
@@ -112,6 +112,9 @@ MonoBehaviour:
     - Name: MaxHealth
       Entry: 3
       Data: 400
+    - Name: MovingVertical
+      Entry: 5
+      Data: false
     - Name: CurrentHealth
       Entry: 7
       Data: 0|UniRx.IntReactiveProperty, UniRx
@@ -121,7 +124,7 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: LaserPrefab
+    - Name: LaserPrefabTag
       Entry: 10
       Data: 0
     - Name: LaserSpeed
