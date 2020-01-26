@@ -17,9 +17,10 @@ namespace Enemy
         [OdinSerialize] public PrefabTag EnemyBasePrefabTag { get; private set; }
         [OdinSerialize] public GameObject Boss { get; private set; }
         [OdinSerialize] public BossClass BossClass { get; private set; }
-        
+
         private int _waveIndex;
         private bool _isPlayable = true;
+        private bool _isSpawnEnemies = false;
 
         private void Start()
         {
@@ -37,7 +38,7 @@ namespace Enemy
                 Boss.GetComponent<Boss>().StartBoss(BossClass);
             }
 
-            if (GameMaster.CurrentStage.Value == GameStage.Enemies)
+            if (GameMaster.CurrentStage.Value == GameStage.Enemies && !_isSpawnEnemies)
             {
                 StartCoroutine(SpawnAllEnemiesInWave(WaveConfigs[_waveIndex]));
             }
@@ -46,6 +47,7 @@ namespace Enemy
         [SuppressMessage("ReSharper", "Unity.PerformanceCriticalCodeInvocation")]
         private IEnumerator SpawnAllEnemiesInWave(WaveConfig currentWave)
         {
+            _isSpawnEnemies = true;
             for (var enemyCount = 0; enemyCount < currentWave.NumberOfEnemies && _isPlayable; enemyCount++)
             {
                 var newEnemy = ObjectPooler.SpawnFromPool(EnemyBasePrefabTag, currentWave.WaveWayPoints[0].position,
@@ -58,6 +60,7 @@ namespace Enemy
             }
 
             _waveIndex = (_waveIndex + 1) % WaveConfigs.Count;
+            _isSpawnEnemies = false;
         }
     }
 }

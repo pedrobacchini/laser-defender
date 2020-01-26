@@ -14,9 +14,9 @@ namespace DefaultNamespace
             _mainCamera = Camera.main;
             _spriteRenderer.color = _startColor;
             _transform.localScale = bossClass.Size;
-            CurrentHealth.Value = bossClass.MaxHealth;
+            CurrentHealth.Value = bossClass.MaxHealth * GameMaster.Level.Value;
             _spriteRenderer.sprite = bossClass.Sprite;
-            _scoreValue = bossClass.ScoreValue;
+            _scoreValue = bossClass.ScoreValue * GameMaster.Level.Value;
             _deathPrefab = bossClass.DeathPrefab;
             _durationOfExplosion = bossClass.DurationOfDeathEffect;
             _deathSound = bossClass.DeathSound;

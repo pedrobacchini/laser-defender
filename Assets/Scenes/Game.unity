@@ -601,12 +601,12 @@ PrefabInstance:
     - target: {fileID: 8927576987809262200, guid: 8bd4b82a0ad804fce9831dfdae623285,
         type: 3}
       propertyPath: serializationData.PrefabModifications.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8927576987809262200, guid: 8bd4b82a0ad804fce9831dfdae623285,
         type: 3}
       propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8927576987809262200, guid: 8bd4b82a0ad804fce9831dfdae623285,
         type: 3}
@@ -617,11 +617,31 @@ PrefabInstance:
         type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 8927576987809262200, guid: 8bd4b82a0ad804fce9831dfdae623285,
+      objectReference: {fileID: 0}
+    - target: {fileID: 8927576987809262200, guid: 8bd4b82a0ad804fce9831dfdae623285,
         type: 3}
+      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.data[0]
+      value: 
+      objectReference: {fileID: 66814631}
+    - target: {fileID: 8927576987809262200, guid: 8bd4b82a0ad804fce9831dfdae623285,
+        type: 3}
+      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 3a8335491d28a43b296ff23ffb152502,
+        type: 2}
     - target: {fileID: 8927576987809262200, guid: 8bd4b82a0ad804fce9831dfdae623285,
         type: 3}
       propertyPath: serializationData.PrefabModifications.Array.data[0]
+      value: '"path":"Boss","value":$eref:0'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8927576987809262200, guid: 8bd4b82a0ad804fce9831dfdae623285,
+        type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.data[1]
+      value: '"path":"BossClass","value":$eref:1'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8927576987809262200, guid: 8bd4b82a0ad804fce9831dfdae623285,
+        type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.data[2]
       value: '"path":"WaveConfigs","length":1'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1131,21 +1151,12 @@ PrefabInstance:
       propertyPath: serializationData.PrefabModifications.Array.data[0]
       value: '"path":"Player","value":$eref:0'
       objectReference: {fileID: 0}
-    - target: {fileID: 1290343051, guid: fb5db6985cb562f47a38e9e1c0f88a34, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -247.80078
-      objectReference: {fileID: 0}
-    - target: {fileID: 6747444398105207856, guid: fb5db6985cb562f47a38e9e1c0f88a34,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 243
-      objectReference: {fileID: 0}
     - target: {fileID: 1162209926, guid: fb5db6985cb562f47a38e9e1c0f88a34, type: 3}
-      propertyPath: serializationData.PrefabModifications.Array.size
+      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1162209926, guid: fb5db6985cb562f47a38e9e1c0f88a34, type: 3}
-      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
+      propertyPath: serializationData.PrefabModifications.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1162209926, guid: fb5db6985cb562f47a38e9e1c0f88a34, type: 3}
@@ -1161,6 +1172,11 @@ PrefabInstance:
       propertyPath: serializationData.PrefabModifications.Array.data[0]
       value: '"path":"Boss","value":$eref:0'
       objectReference: {fileID: 0}
+    - target: {fileID: 1219531519, guid: fb5db6985cb562f47a38e9e1c0f88a34, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 1219531519, guid: fb5db6985cb562f47a38e9e1c0f88a34,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb5db6985cb562f47a38e9e1c0f88a34, type: 3}
 --- !u!1001 &6881115964856818158

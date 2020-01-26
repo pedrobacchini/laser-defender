@@ -16,24 +16,44 @@ MonoBehaviour:
   deleteDllAfterBuilds: 1
   AutomateForAllAOTPlatforms: 1
   automateForPlatforms: 0900000014000000
-  lastScan: 637155525251192420
+  lastScan: 637156401920107200
   supportSerializedTypes:
-  - TypeName: Enemy.EnemyClass, Assembly-CSharp
+  - TypeName: DefaultNamespace.Boss, Assembly-CSharp
     IsCustom: 0
     Emit: 1
-  - TypeName: SingletonScriptableObject.GameMaster+Stage, Assembly-CSharp
+  - TypeName: DefaultNamespace.BossClass, Assembly-CSharp
     IsCustom: 0
     Emit: 1
-  - TypeName: UnityEngine.Sprite, UnityEngine.CoreModule
+  - TypeName: Enemy.Enemy, Assembly-CSharp
     IsCustom: 0
     Emit: 1
-  - TypeName: UnityEngine.Vector3, UnityEngine.CoreModule
+  - TypeName: SingletonScriptableObject.GameStage, Assembly-CSharp
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.List`1[[Enemy.Enemy, Assembly-CSharp]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.List`1[[GameSystem.ObjectPool.ObjectPooler+Pool,
+      Assembly-CSharp]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: GameSystem.ObjectPool.ObjectPooler+Pool, Assembly-CSharp
+    IsCustom: 0
+    Emit: 1
+  - TypeName: PrefabTag, Assembly-CSharp
+    IsCustom: 0
+    Emit: 1
+  - TypeName: UniRx.ReactiveProperty`1[[SingletonScriptableObject.GameStage, Assembly-CSharp]],
+      UniRx
     IsCustom: 0
     Emit: 1
   - TypeName: UnityEngine.AudioClip, UnityEngine.AudioModule
     IsCustom: 0
     Emit: 1
   - TypeName: System.Boolean, mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: Enemy.EnemyClass, Assembly-CSharp
     IsCustom: 0
     Emit: 1
   - TypeName: System.Single, mscorlib
@@ -58,7 +78,13 @@ MonoBehaviour:
   - TypeName: Player.Player, Assembly-CSharp
     IsCustom: 0
     Emit: 1
+  - TypeName: UnityEngine.Sprite, UnityEngine.CoreModule
+    IsCustom: 0
+    Emit: 1
   - TypeName: UnityEngine.Vector2, UnityEngine.CoreModule
+    IsCustom: 0
+    Emit: 1
+  - TypeName: UnityEngine.Vector3, UnityEngine.CoreModule
     IsCustom: 0
     Emit: 1
   - TypeName: Enemy.WaveConfig, Assembly-CSharp

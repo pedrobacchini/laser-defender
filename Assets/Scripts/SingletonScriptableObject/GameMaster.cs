@@ -17,11 +17,10 @@ namespace SingletonScriptableObject
     [CreateAssetMenu(fileName = "New Game Master", menuName = "Singletons/Game Master")]
     public class GameMaster : SingletonScriptableObject<GameMaster>
     {
+        [OdinSerialize] private int _startLevel { get; set; } = 1;
         [OdinSerialize] private float _delayGameOverInSeconds { get; set; } = 2f;
-        public static float DelayGameOverInSeconds => Instance._delayGameOverInSeconds;
-
         [OdinSerialize] private float _pointsBossStage { get; set; } = 10000f;
-        public static float PointsBossStage => Instance._pointsBossStage * Instance._level;
+        public static float PointsBossStage => Instance._pointsBossStage * Instance._level.Value;
 
         [OdinSerialize] [ReadOnly] private IntReactiveProperty _currentScore = new IntReactiveProperty(0);
         public static ReactiveProperty<int> CurrentScore => Instance._currentScore;
@@ -32,11 +31,12 @@ namespace SingletonScriptableObject
         [OdinSerialize] [ReadOnly] private ReactiveProperty<GameStage> _currentStage = new ReactiveProperty<GameStage>();
         public static ReactiveProperty<GameStage> CurrentStage => Instance._currentStage;
 
-        [OdinSerialize] [ReadOnly] private int _level = 1;
+        [OdinSerialize] [ReadOnly] private IntReactiveProperty _level = new IntReactiveProperty();
+        public static IntReactiveProperty Level => Instance._level;
 
         public static void ResetGame()
         {
-            Instance._level = 1;
+            Instance._level.Value = Instance._startLevel;
             Instance._currentScore.Value = 0;
             Instance._levelScore.Value = 0;
             Instance._currentStage.Value = GameStage.Enemies;
@@ -56,7 +56,7 @@ namespace SingletonScriptableObject
         public static void FinishBossBattle()
         {
             Instance._currentStage.Value = GameStage.Enemies;
-            Instance._level++;
+            Instance._level.Value++;
             Instance._levelScore.Value = 0;
         }
 
@@ -77,7 +77,7 @@ namespace SingletonScriptableObject
         {
             GameEventManager.TriggerStartGameOver();
             // Wait some time and load a game over scene
-            Observable.Timer(TimeSpan.FromSeconds(DelayGameOverInSeconds))
+            Observable.Timer(TimeSpan.FromSeconds(Instance._delayGameOverInSeconds))
                 .Subscribe(_ =>
                 {
                     GameEventManager.TriggerFinishGameOver();

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using SingletonScriptableObject;
+using UnityEngine;
 
 namespace Enemy
 {
@@ -9,9 +10,9 @@ namespace Enemy
             _mainCamera = Camera.main;
             _spriteRenderer.color = _startColor;
             _transform.localScale = enemyClass.Size;
-            CurrentHealth.Value = enemyClass.MaxHealth;
+            CurrentHealth.Value = enemyClass.MaxHealth * GameMaster.Level.Value;
             _spriteRenderer.sprite = enemyClass.Sprite;
-            _scoreValue = enemyClass.ScoreValue;
+            _scoreValue = enemyClass.ScoreValue * GameMaster.Level.Value;
             _deathPrefab = enemyClass.DeathPrefab;
             _durationOfExplosion = enemyClass.DurationOfDeathEffect;
             _deathSound = enemyClass.DeathSound;

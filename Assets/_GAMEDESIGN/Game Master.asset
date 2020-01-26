@@ -21,18 +21,21 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
+    - Name: _startLevel
+      Entry: 3
+      Data: 1
     - Name: _delayGameOverInSeconds
       Entry: 4
       Data: 2
     - Name: _pointsBossStage
       Entry: 4
-      Data: 1000
+      Data: 10000
     - Name: _currentScore
       Entry: 7
       Data: 0|UniRx.IntReactiveProperty, UniRx
     - Name: value
       Entry: 3
-      Data: 15240
+      Data: 800
     - Name: 
       Entry: 8
       Data: 
@@ -41,7 +44,7 @@ MonoBehaviour:
       Data: 1|UniRx.IntReactiveProperty, UniRx
     - Name: value
       Entry: 3
-      Data: 4880
+      Data: 800
     - Name: 
       Entry: 8
       Data: 
@@ -51,10 +54,16 @@ MonoBehaviour:
         UniRx
     - Name: value
       Entry: 3
-      Data: 1
+      Data: 0
     - Name: 
       Entry: 8
       Data: 
     - Name: _level
+      Entry: 7
+      Data: 3|UniRx.IntReactiveProperty, UniRx
+    - Name: value
       Entry: 3
-      Data: 4
+      Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
