@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using DefaultNamespace;
 using GameSystem.ObjectPool;
 using SingletonScriptableObject;
 using Sirenix.OdinInspector;
@@ -14,7 +15,9 @@ namespace Enemy
         [OdinSerialize] private List<WaveConfig> WaveConfigs { get; set; }
         [OdinSerialize] private int StartingWave { get; set; }
         [OdinSerialize] public PrefabTag EnemyBasePrefabTag { get; private set; }
-
+        [OdinSerialize] public GameObject Boss { get; private set; }
+        [OdinSerialize] public BossClass BossClass { get; private set; }
+        
         private int _waveIndex;
         private bool _isPlayable = true;
 
@@ -26,12 +29,15 @@ namespace Enemy
 
         private void Update()
         {
-            if (EnemyRuntimeSet.Items.Count != 0) return;
-            if (GameMaster.CurrentScore.Value >= GameMaster.PointsBossStage)
+            if (EnemyRuntimeSet.Items.Count != 0 || GameMaster.CurrentStage.Value == GameStage.BossBattle) return;
+            if (GameMaster.LevelScore.Value >= GameMaster.PointsBossStage)
             {
-                Debug.Log("Boss Battle");
+                GameMaster.InitBossBattle();
+                Boss.SetActive(true);
+                Boss.GetComponent<Boss>().StartBoss(BossClass);
             }
-            else
+
+            if (GameMaster.CurrentStage.Value == GameStage.Enemies)
             {
                 StartCoroutine(SpawnAllEnemiesInWave(WaveConfigs[_waveIndex]));
             }

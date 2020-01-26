@@ -12,7 +12,7 @@ namespace UI
         private void Start()
         {
             var textMeshProUgui = GetComponent<TextMeshProUGUI>();
-            Player.CurrentHealth.Subscribe(health => textMeshProUgui.text = health.ToString());
+            Player.CurrentHealth.Subscribe(health => textMeshProUgui.text = health.ToString()).AddTo(this);
         }
     }
 }

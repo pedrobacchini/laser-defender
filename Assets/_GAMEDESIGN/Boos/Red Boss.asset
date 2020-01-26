@@ -9,18 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9130ddcab86c4b1bad8b6f04694534fe, type: 3}
-  m_Name: Bomb
+  m_Script: {fileID: 11500000, guid: 2406a28f2b2c54839a7a4f9a7d5b2761, type: 3}
+  m_Name: Red Boss
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 21300000, guid: bb9f361c5eb63bf48b503dd3704dd033, type: 3}
+    - {fileID: 21300000, guid: 18e85ba236cb14045ac371744b269ec7, type: 3}
     - {fileID: 400600343035786508, guid: b06fce43e6b454ee189c89d56b713e0d, type: 3}
-    - {fileID: 8300000, guid: 0d89fed1fdcdf45cc9edd4d597643821, type: 3}
-    - {fileID: 11400000, guid: 587ce5518e08045ceb6588315ee4bcce, type: 2}
-    - {fileID: 8300000, guid: 137b97a0287fe8f43b919a4fab02cb7f, type: 3}
+    - {fileID: 8300000, guid: 9c844155545944734b73ce93ea247dbe, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -34,22 +32,22 @@ MonoBehaviour:
       Data: UnityEngine.Vector3, UnityEngine.CoreModule
     - Name: 
       Entry: 4
-      Data: 2
+      Data: 4
     - Name: 
       Entry: 4
-      Data: 2
+      Data: 4
     - Name: 
       Entry: 4
-      Data: 2
+      Data: 4
     - Name: 
       Entry: 8
       Data: 
     - Name: MaxHealth
       Entry: 4
-      Data: 1000
+      Data: 10000
     - Name: ScoreValue
       Entry: 3
-      Data: 460
+      Data: 1000
     - Name: DeathPrefab
       Entry: 10
       Data: 1
@@ -64,43 +62,10 @@ MonoBehaviour:
       Data: UnityEngine.Vector2, UnityEngine.CoreModule
     - Name: 
       Entry: 4
-      Data: 0.0473244749
+      Data: 0.08753481
     - Name: 
       Entry: 4
-      Data: 0.171048567
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: ShootPrefabTag
-      Entry: 10
-      Data: 3
-    - Name: ShootSpeed
-      Entry: 4
-      Data: 0.8
-    - Name: TimeBetweenShoots
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0.948035955
-    - Name: 
-      Entry: 4
-      Data: 1.99969065
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: ShootingSound
-      Entry: 10
-      Data: 4
-    - Name: ShootingVolume
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0.2174451
-    - Name: 
-      Entry: 4
-      Data: 0.421589851
+      Data: 0.236003712
     - Name: 
       Entry: 8
       Data: 

@@ -10,16 +10,16 @@ GameObject:
   m_Component:
   - component: {fileID: 8351513872042038191}
   - component: {fileID: 8351513872042038190}
-  - component: {fileID: 8351513872042038194}
   - component: {fileID: 8351513872042038188}
   - component: {fileID: 8351513872042038189}
+  - component: {fileID: 2239359332002398157}
   m_Layer: 9
   m_Name: Boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8351513872042038191
 Transform:
   m_ObjectHideFlags: 0
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 8351513872042038185}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.11, y: 6.23, z: 0}
-  m_LocalScale: {x: 3.8120623, y: 3.8120623, z: 3.8120623}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -83,56 +83,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8351513872042038194
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8351513872042038185}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d727b69f49e945d29c0d2a654bd6fbc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects:
-    - {fileID: 400600343035786508, guid: b06fce43e6b454ee189c89d56b713e0d, type: 3}
-    - {fileID: 8300000, guid: 9c844155545944734b73ce93ea247dbe, type: 3}
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: Health
-      Entry: 4
-      Data: 10000
-    - Name: ScoreValue
-      Entry: 3
-      Data: 1000
-    - Name: DeathPrefab
-      Entry: 10
-      Data: 0
-    - Name: DurationOfExplosion
-      Entry: 4
-      Data: 2
-    - Name: DeathSound
-      Entry: 10
-      Data: 1
-    - Name: DeathSoundVolume
-      Entry: 7
-      Data: UnityEngine.Vector2, UnityEngine.CoreModule
-    - Name: 
-      Entry: 4
-      Data: 0.6172559
-    - Name: 
-      Entry: 4
-      Data: 0.815115154
-    - Name: 
-      Entry: 8
-      Data: 
 --- !u!50 &8351513872042038188
 Rigidbody2D:
   serializedVersion: 4
@@ -190,3 +140,24 @@ EdgeCollider2D:
   - {x: -0.6353008, y: 0.20887353}
   - {x: -0.6699996, y: 0.7105138}
   - {x: -0.59239745, y: 0.75982445}
+--- !u!114 &2239359332002398157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8351513872042038185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02474acb889149f78d5e8cd6d8f3e5a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []

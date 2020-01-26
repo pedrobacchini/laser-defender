@@ -4,7 +4,7 @@ namespace SingletonScriptableObject
 {
     public class ResetGameMaster : MonoBehaviour
     {
-        private void Start()
+        private void Awake()
         {
             GameMaster.ResetGame();
         }

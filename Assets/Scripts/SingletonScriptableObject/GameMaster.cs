@@ -11,7 +11,7 @@ namespace SingletonScriptableObject
     public enum GameStage
     {
         Enemies,
-        Boss
+        BossBattle
     }
 
     [CreateAssetMenu(fileName = "New Game Master", menuName = "Singletons/Game Master")]
@@ -21,21 +21,43 @@ namespace SingletonScriptableObject
         public static float DelayGameOverInSeconds => Instance._delayGameOverInSeconds;
 
         [OdinSerialize] private float _pointsBossStage { get; set; } = 10000f;
-        public static float PointsBossStage => Instance._pointsBossStage;
+        public static float PointsBossStage => Instance._pointsBossStage * Instance._level;
 
         [OdinSerialize] [ReadOnly] private IntReactiveProperty _currentScore = new IntReactiveProperty(0);
         public static ReactiveProperty<int> CurrentScore => Instance._currentScore;
+        
+        [OdinSerialize] [ReadOnly] private IntReactiveProperty _levelScore = new IntReactiveProperty(0);
+        public static ReactiveProperty<int> LevelScore => Instance._levelScore;
 
-        [OdinSerialize] [ReadOnly] private GameStage _currentStage = GameStage.Enemies;
+        [OdinSerialize] [ReadOnly] private ReactiveProperty<GameStage> _currentStage = new ReactiveProperty<GameStage>();
+        public static ReactiveProperty<GameStage> CurrentStage => Instance._currentStage;
+
+        [OdinSerialize] [ReadOnly] private int _level = 1;
 
         public static void ResetGame()
         {
+            Instance._level = 1;
             Instance._currentScore.Value = 0;
+            Instance._levelScore.Value = 0;
+            Instance._currentStage.Value = GameStage.Enemies;
         }
 
         public static void AddScore(int score)
         {
             Instance._currentScore.Value += score;
+            Instance._levelScore.Value += score;
+        }
+        
+        public static void InitBossBattle()
+        {
+            Instance._currentStage.Value = GameStage.BossBattle;
+        }
+        
+        public static void FinishBossBattle()
+        {
+            Instance._currentStage.Value = GameStage.Enemies;
+            Instance._level++;
+            Instance._levelScore.Value = 0;
         }
 
         [UsedImplicitly]

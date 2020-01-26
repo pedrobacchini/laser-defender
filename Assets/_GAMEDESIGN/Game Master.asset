@@ -26,16 +26,35 @@ MonoBehaviour:
       Data: 2
     - Name: _pointsBossStage
       Entry: 4
-      Data: 10000
+      Data: 1000
     - Name: _currentScore
       Entry: 7
       Data: 0|UniRx.IntReactiveProperty, UniRx
     - Name: value
       Entry: 3
-      Data: 8140
+      Data: 15240
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: _levelScore
+      Entry: 7
+      Data: 1|UniRx.IntReactiveProperty, UniRx
+    - Name: value
+      Entry: 3
+      Data: 4880
     - Name: 
       Entry: 8
       Data: 
     - Name: _currentStage
+      Entry: 7
+      Data: 2|UniRx.ReactiveProperty`1[[SingletonScriptableObject.GameStage, Assembly-CSharp]],
+        UniRx
+    - Name: value
       Entry: 3
-      Data: 0
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: _level
+      Entry: 3
+      Data: 4
