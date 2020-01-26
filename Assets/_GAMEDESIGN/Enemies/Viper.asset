@@ -76,7 +76,7 @@ MonoBehaviour:
       Data: 3
     - Name: ShootSpeed
       Entry: 4
-      Data: 10
+      Data: 12
     - Name: TimeBetweenShoots
       Entry: 7
       Data: UnityEngine.Vector2, UnityEngine.CoreModule

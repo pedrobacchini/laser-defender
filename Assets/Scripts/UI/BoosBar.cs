@@ -28,7 +28,7 @@ public class BoosBar : SerializedMonoBehaviour
             .Subscribe(bossHealth =>
             {
                 _image.color = Color.red;
-                _image.fillAmount = bossHealth / Boss.BossClass.MaxHealth;
+                _image.fillAmount = bossHealth / (Boss.BossClass.MaxHealth * GameMaster.Level.Value);
             })
             .AddTo(this);
     }

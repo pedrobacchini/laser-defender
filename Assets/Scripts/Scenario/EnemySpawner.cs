@@ -26,6 +26,7 @@ namespace Enemy
         {
             _waveIndex = StartingWave;
             GameEventManager.StartGameOver += () => _isPlayable = false;
+            if (GameMaster.CurrentStage.Value == GameStage.BossBattle) SpawnBoss();
         }
 
         private void Update()
@@ -34,14 +35,19 @@ namespace Enemy
             if (GameMaster.LevelScore.Value >= GameMaster.PointsBossStage)
             {
                 GameMaster.InitBossBattle();
-                Boss.SetActive(true);
-                Boss.GetComponent<Boss>().StartBoss(BossClass);
+                SpawnBoss();
             }
 
             if (GameMaster.CurrentStage.Value == GameStage.Enemies && !_isSpawnEnemies)
             {
                 StartCoroutine(SpawnAllEnemiesInWave(WaveConfigs[_waveIndex]));
             }
+        }
+
+        private void SpawnBoss()
+        {
+            Boss.SetActive(true);
+            Boss.GetComponent<Boss>().StartBoss(BossClass);
         }
 
         [SuppressMessage("ReSharper", "Unity.PerformanceCriticalCodeInvocation")]
@@ -51,11 +57,11 @@ namespace Enemy
             for (var enemyCount = 0; enemyCount < currentWave.NumberOfEnemies && _isPlayable; enemyCount++)
             {
                 var newEnemy = ObjectPooler.SpawnFromPool(EnemyBasePrefabTag, currentWave.WaveWayPoints[0].position,
-                    Quaternion.identity);
-                newEnemy.GetComponent<Enemy>().StartEnemy(currentWave.EnemyClass);
+                    Quaternion.identity).GetComponent<Enemy>();
+                newEnemy.StartEnemy(currentWave.EnemyClass);
                 newEnemy.GetComponent<EnemyShooting>().StartEnemyShooting(currentWave.EnemyClass);
                 newEnemy.GetComponent<EnemyPathing>().StartEnemyPathing(currentWave);
-                EnemyRuntimeSet.Add(newEnemy.GetComponent<Enemy>());
+                EnemyRuntimeSet.Add(newEnemy);
                 yield return new WaitForSeconds(currentWave.TimeBetweenSpawns);
             }
 

@@ -20,6 +20,7 @@ namespace SingletonScriptableObject
         [OdinSerialize] private int _startLevel { get; set; } = 1;
         [OdinSerialize] private float _delayGameOverInSeconds { get; set; } = 2f;
         [OdinSerialize] private float _pointsBossStage { get; set; } = 10000f;
+        [OdinSerialize] private GameStage _startStage { get; set; }
         public static float PointsBossStage => Instance._pointsBossStage * Instance._level.Value;
 
         [OdinSerialize] [ReadOnly] private IntReactiveProperty _currentScore = new IntReactiveProperty(0);
@@ -39,7 +40,7 @@ namespace SingletonScriptableObject
             Instance._level.Value = Instance._startLevel;
             Instance._currentScore.Value = 0;
             Instance._levelScore.Value = 0;
-            Instance._currentStage.Value = GameStage.Enemies;
+            Instance._currentStage.Value = Instance._startStage;
         }
 
         public static void AddScore(int score)
