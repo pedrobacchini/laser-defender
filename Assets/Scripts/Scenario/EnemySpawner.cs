@@ -15,7 +15,7 @@ namespace Enemy
         [OdinSerialize] private List<WaveConfig> WaveConfigs { get; set; }
         [OdinSerialize] private int StartingWave { get; set; }
         [OdinSerialize] public PrefabTag EnemyBasePrefabTag { get; private set; }
-        [OdinSerialize] public GameObject Boss { get; private set; }
+        [OdinSerialize] public Boss Boss { get; private set; }
         [OdinSerialize] public BossClass BossClass { get; private set; }
 
         private int _waveIndex;
@@ -46,8 +46,8 @@ namespace Enemy
 
         private void SpawnBoss()
         {
-            Boss.SetActive(true);
-            Boss.GetComponent<Boss>().StartBoss(BossClass);
+            Boss.gameObject.SetActive(true);
+            Boss.StartBoss(BossClass);
         }
 
         [SuppressMessage("ReSharper", "Unity.PerformanceCriticalCodeInvocation")]
@@ -58,9 +58,7 @@ namespace Enemy
             {
                 var newEnemy = ObjectPooler.SpawnFromPool(EnemyBasePrefabTag, currentWave.WaveWayPoints[0].position,
                     Quaternion.identity).GetComponent<Enemy>();
-                newEnemy.StartEnemy(currentWave.EnemyClass);
-                newEnemy.GetComponent<EnemyShooting>().StartEnemyShooting(currentWave.EnemyClass);
-                newEnemy.GetComponent<EnemyPathing>().StartEnemyPathing(currentWave);
+                newEnemy.StartEnemy(currentWave);
                 EnemyRuntimeSet.Add(newEnemy);
                 yield return new WaitForSeconds(currentWave.TimeBetweenSpawns);
             }

@@ -29,16 +29,16 @@ MonoBehaviour:
       Data: 2
     - Name: _pointsBossStage
       Entry: 4
-      Data: 10000
+      Data: 1000
     - Name: _startStage
       Entry: 3
-      Data: 0
+      Data: 1
     - Name: _currentScore
       Entry: 7
       Data: 0|UniRx.IntReactiveProperty, UniRx
     - Name: value
       Entry: 3
-      Data: 10860
+      Data: 3400
     - Name: 
       Entry: 8
       Data: 
@@ -47,7 +47,7 @@ MonoBehaviour:
       Data: 1|UniRx.IntReactiveProperty, UniRx
     - Name: value
       Entry: 3
-      Data: 0
+      Data: 2400
     - Name: 
       Entry: 8
       Data: 
@@ -57,7 +57,7 @@ MonoBehaviour:
         UniRx
     - Name: value
       Entry: 3
-      Data: 0
+      Data: 1
     - Name: 
       Entry: 8
       Data: 
@@ -66,7 +66,7 @@ MonoBehaviour:
       Data: 3|UniRx.IntReactiveProperty, UniRx
     - Name: value
       Entry: 3
-      Data: 4
+      Data: 2
     - Name: 
       Entry: 8
       Data: 

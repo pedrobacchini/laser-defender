@@ -1,6 +1,5 @@
 using System;
 using GameSystem.ObjectPool;
-using Sirenix.OdinInspector;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
@@ -8,37 +7,30 @@ using Random = UnityEngine.Random;
 
 namespace Enemy
 {
-    public class EnemyShooting : SerializedMonoBehaviour
+    public class EnemyShooting
     {
-        private EnemyClass _enemyClass;
-        private Camera _mainCamera;
-        private float _shotCounter;
         private readonly CompositeDisposable _disposables = new CompositeDisposable();
 
-        public void StartEnemyShooting(EnemyClass enemyClass)
+        public void StartEnemyShooting(EnemyClass enemyClass, GameObject gameObject)
         {
-            _mainCamera = Camera.main;
-            _enemyClass = enemyClass;
-            _shotCounter = Random.Range(_enemyClass.TimeBetweenShoots.x, _enemyClass.TimeBetweenShoots.y);
-            this.UpdateAsObservable()
-                .Sample(TimeSpan.FromSeconds(_shotCounter))
-                .Subscribe(_ => Shoot())
+            var shotCounter = Random.Range(enemyClass.TimeBetweenShoots.x, enemyClass.TimeBetweenShoots.y);
+            gameObject.UpdateAsObservable()
+                .Sample(TimeSpan.FromSeconds(shotCounter))
+                .Subscribe(_ => Shoot(enemyClass, gameObject, Camera.main.transform.position))
                 .AddTo(_disposables);
-        }
-        
-        private void Shoot()
-        {
-            var position = transform.position;
-            var laser = ObjectPooler.SpawnFromPool(_enemyClass.ShootPrefabTag, new Vector2(position.x, position.y - 1),
-                Quaternion.identity);
-            laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -_enemyClass.ShootSpeed);
-            AudioSource.PlayClipAtPoint(_enemyClass.ShootingSound, _mainCamera.transform.position,
-                Random.Range(_enemyClass.ShootingVolume.x, _enemyClass.ShootingVolume.y));
+
+            gameObject.OnDisableAsObservable()
+                .Subscribe(_ => _disposables.Clear());
         }
 
-        private void OnDisable()
+        private static void Shoot(EnemyClass enemyClass, GameObject gameObject, Vector3 shootingSoundPosition)
         {
-            _disposables.Clear();
+            var position = gameObject.transform.position;
+            var laser = ObjectPooler.SpawnFromPool(enemyClass.ShootPrefabTag, new Vector2(position.x, position.y - 1),
+                Quaternion.identity);
+            laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -enemyClass.ShootSpeed);
+            AudioSource.PlayClipAtPoint(enemyClass.ShootingSound, shootingSoundPosition,
+                Random.Range(enemyClass.ShootingVolume.x, enemyClass.ShootingVolume.y));
         }
     }
 }

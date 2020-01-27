@@ -1,28 +1,47 @@
-﻿using SingletonScriptableObject;
+﻿using System.Diagnostics.CodeAnalysis;
+using SingletonScriptableObject;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Enemy
 {
-    public class Enemy : EnemyBase
+    public class Enemy : SerializedMonoBehaviour
     {
-        public void StartEnemy(EnemyClass enemyClass)
+        private readonly EnemyShooting _enemyShooting = new EnemyShooting();
+        private readonly EnemyPathing _enemyPathing = new EnemyPathing();
+        private readonly EnemyHealth _enemyHealth = new EnemyHealth();
+
+        private Transform _transform;
+        private SpriteRenderer _spriteRenderer;
+        private Color _startColor;
+
+        private void Awake()
         {
-            _mainCamera = Camera.main;
-            _spriteRenderer.color = _startColor;
-            _transform.localScale = enemyClass.Size;
-            CurrentHealth.Value = enemyClass.MaxHealth * GameMaster.Level.Value;
-            _spriteRenderer.sprite = enemyClass.Sprite;
-            _scoreValue = enemyClass.ScoreValue * GameMaster.Level.Value;
-            _deathPrefab = enemyClass.DeathPrefab;
-            _durationOfExplosion = enemyClass.DurationOfDeathEffect;
-            _deathSound = enemyClass.DeathSound;
-            _deathSoundVolume = enemyClass.DeathSoundVolume;
+            _transform = GetComponent<Transform>();
+            _spriteRenderer = GetComponent<SpriteRenderer>();
+            _startColor = _spriteRenderer.color;
         }
 
-        public override void SelfDestroy()
+        [SuppressMessage("ReSharper", "Unity.PerformanceCriticalCodeInvocation")]
+        public void StartEnemy(WaveConfig waveConfig)
+        {
+            _transform.localScale = waveConfig.EnemyClass.Size;
+            _spriteRenderer.sprite = waveConfig.EnemyClass.Sprite;
+            _spriteRenderer.color = _startColor;
+            _enemyPathing.StartEnemyPathing(waveConfig, gameObject, SelfDestroy);
+            var enemyClass = waveConfig.EnemyClass;
+            _enemyShooting.StartEnemyShooting(enemyClass, gameObject);
+            var MaxHealth = waveConfig.EnemyClass.MaxHealth * GameMaster.Level.Value;
+            var ScoreValue = waveConfig.EnemyClass.ScoreValue * GameMaster.Level.Value;
+            _enemyHealth.StartEnemyHealth(gameObject, MaxHealth, _spriteRenderer, _startColor, ScoreValue,
+                enemyClass.DeathPrefab, enemyClass.DurationOfDeathEffect, enemyClass.DeathSound,
+                enemyClass.DeathSoundVolume, SelfDestroy);
+        }
+
+        private void SelfDestroy()
         {
             EnemyRuntimeSet.Remove(this);
-            base.SelfDestroy();
+            gameObject.SetActive(false);
         }
     }
 }

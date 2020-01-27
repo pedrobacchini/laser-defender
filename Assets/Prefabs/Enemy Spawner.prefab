@@ -58,6 +58,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: bb4fbfb46f6064a39bf56a72889fa00b, type: 2}
     - {fileID: 11400000, guid: cfbe32a25f53e4c738c275f66911936a, type: 2}
     - {fileID: 11400000, guid: b427b6b23507e45c3b46c7f1bef021f2, type: 2}
+    - {fileID: 11400000, guid: 3a8335491d28a43b296ff23ffb152502, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -121,3 +122,9 @@ MonoBehaviour:
     - Name: EnemyBasePrefabTag
       Entry: 10
       Data: 10
+    - Name: Boss
+      Entry: 6
+      Data: 
+    - Name: BossClass
+      Entry: 10
+      Data: 11

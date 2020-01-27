@@ -1,47 +1,50 @@
-﻿using Sirenix.OdinInspector;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
 
 namespace Enemy
 {
-    public class EnemyPathing : SerializedMonoBehaviour
+    public class EnemyPathing
     {
-        private int _wayPointIndex = 0;
-        
         private readonly CompositeDisposable _disposables = new CompositeDisposable();
+        private int wayPointIndex;
 
-        public void StartEnemyPathing(WaveConfig WaveConfig)
+        [SuppressMessage("ReSharper", "Unity.PerformanceCriticalCodeInvocation")]
+        public void StartEnemyPathing(WaveConfig WaveConfig, GameObject gameObject, Action selfDestroy)
         {
-            _wayPointIndex = 0;
-            
+            wayPointIndex = 0;
+
             var wayPoints = WaveConfig.WaveWayPoints;
 
-            transform.position = wayPoints[0].position;
+            gameObject.transform.position = wayPoints[0].position;
 
-            bool IsFinishMovement() => _wayPointIndex + 1 >= wayPoints.Count;
+            bool IsFinishMovement() => wayPointIndex + 1 >= wayPoints.Count;
 
-            this.UpdateAsObservable()
+            gameObject.UpdateAsObservable()
                 .Where(_ => !IsFinishMovement())
-                .Select	(_ => wayPoints[_wayPointIndex + 1].position)
-                .Subscribe(nextPosition =>
-                {
-                    var movementThisFrame = WaveConfig.MoveSpeed * Time.deltaTime;
-                    transform.position = Vector2.MoveTowards(transform.position, nextPosition, movementThisFrame);
-                    if (transform.position.Equals(wayPoints[_wayPointIndex + 1].position)) _wayPointIndex++;
-                })
+                .Select(_ => wayPoints[wayPointIndex + 1].position)
+                .Subscribe(nextPosition => GoToNextPosition(WaveConfig, gameObject, nextPosition, wayPoints))
                 .AddTo(_disposables);
 
-            this.UpdateAsObservable()
+            gameObject.UpdateAsObservable()
                 .Where(_ => IsFinishMovement())
-                .Select(_ => GetComponent<Enemy>())
-                .Subscribe(enemy => enemy.SelfDestroy())
+                .Subscribe(_ => selfDestroy())
                 .AddTo(_disposables);
+
+            gameObject.OnDisableAsObservable()
+                .Subscribe(_ => _disposables.Clear());
         }
-        
-        private void OnDisable()
+
+        private void GoToNextPosition(WaveConfig WaveConfig, GameObject gameObject, Vector3 nextPosition,
+            IReadOnlyList<Transform> wayPoints)
         {
-            _disposables.Clear();
+            var movementThisFrame = WaveConfig.MoveSpeed * Time.deltaTime;
+            gameObject.transform.position =
+                Vector2.MoveTowards(gameObject.transform.position, nextPosition, movementThisFrame);
+            if (gameObject.transform.position.Equals(wayPoints[wayPointIndex + 1].position)) wayPointIndex++;
         }
     }
 }

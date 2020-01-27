@@ -17,6 +17,7 @@ MonoBehaviour:
     SerializedBytes: 
     ReferencedUnityObjects:
     - {fileID: 21300000, guid: 18e85ba236cb14045ac371744b269ec7, type: 3}
+    - {fileID: 7634999895489637026, guid: 7457698266ec74ee0be68e454c2314f5, type: 3}
     - {fileID: 1875422209972044793, guid: f0075a82974ec48bd863363b6a45afff, type: 3}
     - {fileID: 8300000, guid: 9c844155545944734b73ce93ea247dbe, type: 3}
     SerializedBytesString: 
@@ -45,6 +46,12 @@ MonoBehaviour:
     - Name: MaxHealth
       Entry: 4
       Data: 10000
+    - Name: MoveSpeed
+      Entry: 4
+      Data: 2
+    - Name: PathPrefab
+      Entry: 10
+      Data: 1
     - Name: MaxHealthShield
       Entry: 4
       Data: 6000
@@ -53,13 +60,13 @@ MonoBehaviour:
       Data: 1000
     - Name: DeathPrefab
       Entry: 10
-      Data: 1
+      Data: 2
     - Name: DurationOfDeathEffect
       Entry: 4
       Data: 3
     - Name: DeathSound
       Entry: 10
-      Data: 2
+      Data: 3
     - Name: DeathSoundVolume
       Entry: 7
       Data: UnityEngine.Vector2, UnityEngine.CoreModule
