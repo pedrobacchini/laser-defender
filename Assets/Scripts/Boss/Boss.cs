@@ -15,6 +15,7 @@ namespace DefaultNamespace
         public EnemyHealth EnemyHealth { get; } = new EnemyHealth();
         public float MaxHealth { get; private set; }
 
+        private readonly BossPathing _bossPathing = new BossPathing();
         private Transform _transform;
         private SpriteRenderer _spriteRenderer;
         private Color _startColor;
@@ -38,6 +39,7 @@ namespace DefaultNamespace
             MaxHealth = bossClass.MaxHealth * GameMaster.Level.Value;
             _halfHealth = MaxHealth / 2;
             var ScoreValue = bossClass.ScoreValue * GameMaster.Level.Value;
+            _bossPathing.StartBossPathing(bossClass, gameObject);
             EnemyHealth.StartEnemyHealth(gameObject, MaxHealth, _spriteRenderer, _startColor, ScoreValue,
                 bossClass.DeathPrefab, bossClass.DurationOfDeathEffect, bossClass.DeathSound,
                 bossClass.DeathSoundVolume, SelfDestroy);

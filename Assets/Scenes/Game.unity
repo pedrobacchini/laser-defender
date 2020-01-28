@@ -614,6 +614,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bottom Shredder
       objectReference: {fileID: 0}
+    - target: {fileID: 8926172448698497857, guid: 4a186ccaf240c481e82bd253d74244b7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 8926172448698497859, guid: 4a186ccaf240c481e82bd253d74244b7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1314,6 +1319,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Top Shredder
+      objectReference: {fileID: 0}
+    - target: {fileID: 8926172448698497857, guid: 4a186ccaf240c481e82bd253d74244b7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 8926172448698497859, guid: 4a186ccaf240c481e82bd253d74244b7,
         type: 3}

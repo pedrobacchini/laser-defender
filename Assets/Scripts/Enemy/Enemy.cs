@@ -28,7 +28,7 @@ namespace Enemy
             _transform.localScale = waveConfig.EnemyClass.Size;
             _spriteRenderer.sprite = waveConfig.EnemyClass.Sprite;
             _spriteRenderer.color = _startColor;
-            _enemyPathing.StartEnemyPathing(waveConfig, gameObject, SelfDestroy);
+            _enemyPathing.StartEnemyPathing(waveConfig.WaveWayPoints, waveConfig.MoveSpeed, gameObject, SelfDestroy);
             var enemyClass = waveConfig.EnemyClass;
             _enemyShooting.StartEnemyShooting(enemyClass, gameObject);
             var MaxHealth = waveConfig.EnemyClass.MaxHealth * GameMaster.Level.Value;

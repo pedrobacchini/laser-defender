@@ -13,11 +13,10 @@ namespace Enemy
         private int wayPointIndex;
 
         [SuppressMessage("ReSharper", "Unity.PerformanceCriticalCodeInvocation")]
-        public void StartEnemyPathing(WaveConfig WaveConfig, GameObject gameObject, Action selfDestroy)
+        public void StartEnemyPathing(List<Transform> wayPoints, float moveSpeed, GameObject gameObject,
+            Action selfDestroy)
         {
             wayPointIndex = 0;
-
-            var wayPoints = WaveConfig.WaveWayPoints;
 
             gameObject.transform.position = wayPoints[0].position;
 
@@ -25,8 +24,8 @@ namespace Enemy
 
             gameObject.UpdateAsObservable()
                 .Where(_ => !IsFinishMovement())
-                .Select(_ => wayPoints[wayPointIndex + 1].position)
-                .Subscribe(nextPosition => GoToNextPosition(WaveConfig, gameObject, nextPosition, wayPoints))
+                .Select(_ => GetNextPosition(gameObject, wayPoints))
+                .Subscribe(nextPosition => GoToNextPosition(gameObject, moveSpeed, nextPosition))
                 .AddTo(_disposables);
 
             gameObject.UpdateAsObservable()
@@ -38,13 +37,18 @@ namespace Enemy
                 .Subscribe(_ => _disposables.Clear());
         }
 
-        private void GoToNextPosition(WaveConfig WaveConfig, GameObject gameObject, Vector3 nextPosition,
-            IReadOnlyList<Transform> wayPoints)
+        private Vector3 GetNextPosition(GameObject gameObject, List<Transform> wayPoints)
         {
-            var movementThisFrame = WaveConfig.MoveSpeed * Time.deltaTime;
+            if (gameObject.transform.position.Equals(wayPoints[wayPointIndex + 1].position))
+                wayPointIndex++;
+            return wayPoints[wayPointIndex + 1].position;
+        }
+
+        private static void GoToNextPosition(GameObject gameObject, float moveSpeed, Vector3 nextPosition)
+        {
+            var movementThisFrame = moveSpeed * Time.deltaTime;
             gameObject.transform.position =
                 Vector2.MoveTowards(gameObject.transform.position, nextPosition, movementThisFrame);
-            if (gameObject.transform.position.Equals(wayPoints[wayPointIndex + 1].position)) wayPointIndex++;
         }
     }
 }

@@ -15,6 +15,7 @@ namespace DefaultNamespace
         [Title("Boss Stats")] [OdinSerialize] public float MaxHealth { get; private set; } = 100f;
         [OdinSerialize] public float MoveSpeed { get; private set; } = 2f;
         [OdinSerialize] private GameObject PathPrefab { get; set; }
+        [OdinSerialize] public int StartLoopPath { get; private set; }
         [OdinSerialize] public float MaxHealthShield { get; private set; } = 100f;
         [OdinSerialize] public int ScoreValue { get; private set; } = 100;
 
