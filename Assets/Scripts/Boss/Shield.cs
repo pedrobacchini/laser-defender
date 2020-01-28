@@ -1,5 +1,4 @@
 using System;
-using SingletonScriptableObject;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UniRx;
@@ -29,7 +28,7 @@ namespace DefaultNamespace
         public void StartShield(float maxHealthShield)
         {
             gameObject.SetActive(true);
-            _currentHealth = maxHealthShield * GameMaster.Level.Value;
+            _currentHealth = maxHealthShield;
             _healthSecondTurn = _currentHealth / 2;
             _spriteRenderer.sprite = _firstTurnSprite;
         }

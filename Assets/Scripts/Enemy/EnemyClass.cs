@@ -1,3 +1,4 @@
+using SingletonScriptableObject;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UnityEngine;
@@ -9,8 +10,11 @@ namespace Enemy
     {
         [Title("Enemy Base")] [OdinSerialize] public Sprite Sprite { get; private set; }
         [OdinSerialize] public Vector3 Size { get; private set; }
-        [Title("Enemy Stats")] [OdinSerialize] public float MaxHealth { get; private set; } = 100f;
-        [OdinSerialize] public int ScoreValue { get; private set; } = 100;
+        
+        [Title("Enemy Stats")] [OdinSerialize] private float _maxHealth = 100f;
+        public float MaxHealth => _maxHealth * GameMaster.Level.Value;
+        [OdinSerialize] private int _scoreValue = 100;
+        public int ScoreValue => _scoreValue * GameMaster.Level.Value;
 
         [Title("Death Effects")]
         [OdinSerialize]

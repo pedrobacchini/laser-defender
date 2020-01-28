@@ -1,6 +1,5 @@
 using Enemy;
 using SingletonScriptableObject;
-using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UniRx;
 using UniRx.Triggers;
@@ -8,13 +7,14 @@ using UnityEngine;
 
 namespace DefaultNamespace
 {
-    public class Boss : SerializedMonoBehaviour
+    public class Boss : EnemyBase
     {
         [OdinSerialize] private Shield Shield { get; set; }
 
         public EnemyHealth EnemyHealth { get; } = new EnemyHealth();
         public float MaxHealth { get; private set; }
 
+        private BossClass _bossClass;
         private readonly BossPathing _bossPathing = new BossPathing();
         private Transform _transform;
         private SpriteRenderer _spriteRenderer;
@@ -31,18 +31,16 @@ namespace DefaultNamespace
 
         public void StartBoss(BossClass bossClass)
         {
-            _spriteRenderer.color = _startColor;
+            _bossClass = bossClass;
             _transform.localScale = bossClass.Size;
             _spriteRenderer.sprite = bossClass.Sprite;
             _spriteRenderer.color = _startColor;
 
-            MaxHealth = bossClass.MaxHealth * GameMaster.Level.Value;
+            MaxHealth = bossClass.MaxHealth;
             _halfHealth = MaxHealth / 2;
-            var ScoreValue = bossClass.ScoreValue * GameMaster.Level.Value;
+
             _bossPathing.StartBossPathing(bossClass, gameObject);
-            EnemyHealth.StartEnemyHealth(gameObject, MaxHealth, _spriteRenderer, _startColor, ScoreValue,
-                bossClass.DeathPrefab, bossClass.DurationOfDeathEffect, bossClass.DeathSound,
-                bossClass.DeathSoundVolume, SelfDestroy);
+            EnemyHealth.StartEnemyHealth(gameObject, MaxHealth, _spriteRenderer, _startColor);
 
             Shield.StartShield(bossClass.MaxHealthShield);
 
@@ -56,8 +54,16 @@ namespace DefaultNamespace
                 .AddTo(_disposables);
         }
 
+        private void Update()
+        {
+            if (EnemyHealth.CurrentHealth.Value > 0) return;
+            Die(_bossClass.ScoreValue, _bossClass.DeathPrefab, _bossClass.DurationOfDeathEffect,
+                _bossClass.DeathSound, _bossClass.DeathSoundVolume);
+            Destroy();
+        }
 
-        private void SelfDestroy()
+
+        private void Destroy()
         {
             gameObject.SetActive(false);
             GameMaster.FinishBossBattle();

@@ -24,8 +24,8 @@ namespace Enemy
 
             gameObject.UpdateAsObservable()
                 .Where(_ => !IsFinishMovement())
-                .Select(_ => GetNextPosition(gameObject, wayPoints))
-                .Subscribe(nextPosition => GoToNextPosition(gameObject, moveSpeed, nextPosition))
+                .Select(_ => wayPoints[wayPointIndex + 1].position)
+                .Subscribe(nextPosition => GoToNextPosition(gameObject, moveSpeed, nextPosition, wayPoints))
                 .AddTo(_disposables);
 
             gameObject.UpdateAsObservable()
@@ -37,18 +37,13 @@ namespace Enemy
                 .Subscribe(_ => _disposables.Clear());
         }
 
-        private Vector3 GetNextPosition(GameObject gameObject, List<Transform> wayPoints)
-        {
-            if (gameObject.transform.position.Equals(wayPoints[wayPointIndex + 1].position))
-                wayPointIndex++;
-            return wayPoints[wayPointIndex + 1].position;
-        }
-
-        private static void GoToNextPosition(GameObject gameObject, float moveSpeed, Vector3 nextPosition)
+        private void GoToNextPosition(GameObject gameObject, float moveSpeed, Vector3 nextPosition, List<Transform> wayPoints)
         {
             var movementThisFrame = moveSpeed * Time.deltaTime;
             gameObject.transform.position =
                 Vector2.MoveTowards(gameObject.transform.position, nextPosition, movementThisFrame);
+            if (gameObject.transform.position.Equals(wayPoints[wayPointIndex + 1].position))
+                wayPointIndex++;
         }
     }
 }

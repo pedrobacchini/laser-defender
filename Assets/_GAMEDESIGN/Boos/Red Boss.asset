@@ -43,9 +43,15 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: MaxHealth
+    - Name: _maxHealth
       Entry: 4
       Data: 10000
+    - Name: _scoreValue
+      Entry: 3
+      Data: 1000
+    - Name: _maxHealthShield
+      Entry: 4
+      Data: 6000
     - Name: MoveSpeed
       Entry: 4
       Data: 5
@@ -55,12 +61,6 @@ MonoBehaviour:
     - Name: StartLoopPath
       Entry: 3
       Data: 1
-    - Name: MaxHealthShield
-      Entry: 4
-      Data: 6000
-    - Name: ScoreValue
-      Entry: 3
-      Data: 1000
     - Name: DeathPrefab
       Entry: 10
       Data: 2

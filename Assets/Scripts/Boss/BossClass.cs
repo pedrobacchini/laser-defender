@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using SingletonScriptableObject;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UnityEngine;
@@ -11,13 +12,19 @@ namespace DefaultNamespace
     {
         [Title("Boss Base")] [OdinSerialize] public Sprite Sprite { get; private set; }
         [OdinSerialize] public Vector3 Size { get; private set; }
-        
-        [Title("Boss Stats")] [OdinSerialize] public float MaxHealth { get; private set; } = 100f;
-        [OdinSerialize] public float MoveSpeed { get; private set; } = 2f;
+
+        [Title("Boss Stats")] [OdinSerialize] private float _maxHealth = 100f;
+        public float MaxHealth => _maxHealth * GameMaster.Level.Value;
+        [OdinSerialize] private int _scoreValue = 100;
+        public int ScoreValue => _scoreValue * GameMaster.Level.Value;
+        [OdinSerialize] private float _maxHealthShield = 100f;
+        public float MaxHealthShield => _maxHealthShield * GameMaster.Level.Value;
+
+        [Title("Boss Movement")]
+        [OdinSerialize]
+        public float MoveSpeed { get; private set; } = 2f;
         [OdinSerialize] private GameObject PathPrefab { get; set; }
         [OdinSerialize] public int StartLoopPath { get; private set; }
-        [OdinSerialize] public float MaxHealthShield { get; private set; } = 100f;
-        [OdinSerialize] public int ScoreValue { get; private set; } = 100;
 
         [Title("Death Effects")]
         [OdinSerialize]

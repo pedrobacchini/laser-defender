@@ -1,11 +1,9 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using SingletonScriptableObject;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Enemy
 {
-    public class Enemy : SerializedMonoBehaviour
+    public class Enemy : EnemyBase
     {
         private readonly EnemyShooting _enemyShooting = new EnemyShooting();
         private readonly EnemyPathing _enemyPathing = new EnemyPathing();
@@ -14,6 +12,7 @@ namespace Enemy
         private Transform _transform;
         private SpriteRenderer _spriteRenderer;
         private Color _startColor;
+        private EnemyClass _enemyClass;
 
         private void Awake()
         {
@@ -25,20 +24,24 @@ namespace Enemy
         [SuppressMessage("ReSharper", "Unity.PerformanceCriticalCodeInvocation")]
         public void StartEnemy(WaveConfig waveConfig)
         {
+            _enemyClass = waveConfig.EnemyClass;
             _transform.localScale = waveConfig.EnemyClass.Size;
             _spriteRenderer.sprite = waveConfig.EnemyClass.Sprite;
             _spriteRenderer.color = _startColor;
-            _enemyPathing.StartEnemyPathing(waveConfig.WaveWayPoints, waveConfig.MoveSpeed, gameObject, SelfDestroy);
-            var enemyClass = waveConfig.EnemyClass;
-            _enemyShooting.StartEnemyShooting(enemyClass, gameObject);
-            var MaxHealth = waveConfig.EnemyClass.MaxHealth * GameMaster.Level.Value;
-            var ScoreValue = waveConfig.EnemyClass.ScoreValue * GameMaster.Level.Value;
-            _enemyHealth.StartEnemyHealth(gameObject, MaxHealth, _spriteRenderer, _startColor, ScoreValue,
-                enemyClass.DeathPrefab, enemyClass.DurationOfDeathEffect, enemyClass.DeathSound,
-                enemyClass.DeathSoundVolume, SelfDestroy);
+            _enemyPathing.StartEnemyPathing(waveConfig.WaveWayPoints, waveConfig.MoveSpeed, gameObject, Destroy);
+            _enemyShooting.StartEnemyShooting(_enemyClass, gameObject);
+            _enemyHealth.StartEnemyHealth(gameObject, _enemyClass.MaxHealth, _spriteRenderer, _startColor);
         }
 
-        private void SelfDestroy()
+        private void Update()
+        {
+            if (_enemyHealth.CurrentHealth.Value > 0) return;
+            Die(_enemyClass.ScoreValue, _enemyClass.DeathPrefab, _enemyClass.DurationOfDeathEffect,
+                _enemyClass.DeathSound, _enemyClass.DeathSoundVolume);
+            Destroy();
+        }
+
+        private void Destroy()
         {
             EnemyRuntimeSet.Remove(this);
             gameObject.SetActive(false);

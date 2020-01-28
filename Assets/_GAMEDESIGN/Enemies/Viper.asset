@@ -44,12 +44,6 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: MaxHealth
-      Entry: 4
-      Data: 100
-    - Name: ScoreValue
-      Entry: 3
-      Data: 100
     - Name: DeathPrefab
       Entry: 10
       Data: 1
@@ -104,3 +98,9 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: _maxHealth
+      Entry: 4
+      Data: 100
+    - Name: _scoreValue
+      Entry: 3
+      Data: 250
