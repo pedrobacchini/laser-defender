@@ -20,7 +20,7 @@ public class BoosBar : SerializedMonoBehaviour
             .Subscribe(EnemyStageBar)
             .AddTo(this);
 
-        Boss.EnemyHealth.CurrentHealth
+        Boss.CurrentHealth
             .Where(_ => GameMaster.CurrentStage.Value == GameStage.BossBattle)
             .Subscribe(BossBattleStageBar)
             .AddTo(this);

@@ -2,17 +2,12 @@
 {
     public delegate void GameEvent();
 
-    public static event GameEvent GameStart, BossBattle, StartGameOver, FinishGameOver;
+    public static event GameEvent GameStart, StartGameOver, FinishGameOver;
 
     #region Event methods
     public static void TriggerGameStart()
     {
         GameStart?.Invoke();
-    }
-    
-    public static void TriggerBossBattle()
-    {
-        BossBattle?.Invoke();
     }
 
     public static void TriggerStartGameOver()

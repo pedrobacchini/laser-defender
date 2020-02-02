@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using SingletonScriptableObject;
 using UnityEngine;
 
 namespace Enemy
@@ -11,14 +12,13 @@ namespace Enemy
 
         private Transform _transform;
         private SpriteRenderer _spriteRenderer;
-        private Color _startColor;
         private EnemyClass _enemyClass;
 
         private void Awake()
         {
             _transform = GetComponent<Transform>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
-            _startColor = _spriteRenderer.color;
+            _enemyHealth.Awake(_spriteRenderer);
         }
 
         [SuppressMessage("ReSharper", "Unity.PerformanceCriticalCodeInvocation")]
@@ -27,16 +27,15 @@ namespace Enemy
             _enemyClass = waveConfig.EnemyClass;
             _transform.localScale = waveConfig.EnemyClass.Size;
             _spriteRenderer.sprite = waveConfig.EnemyClass.Sprite;
-            _spriteRenderer.color = _startColor;
             _enemyPathing.StartEnemyPathing(waveConfig.WaveWayPoints, waveConfig.MoveSpeed, gameObject, Destroy);
             _enemyShooting.StartEnemyShooting(_enemyClass, gameObject);
-            _enemyHealth.StartEnemyHealth(gameObject, _enemyClass.MaxHealth, _spriteRenderer, _startColor);
+            _enemyHealth.StartEnemyHealth(gameObject, _enemyClass.MaxHealth, Death);
         }
 
-        private void Update()
+        private void Death()
         {
-            if (_enemyHealth.CurrentHealth.Value > 0) return;
-            Die(_enemyClass.ScoreValue, _enemyClass.DeathPrefab, _enemyClass.DurationOfDeathEffect,
+            GameMaster.AddScore(_enemyClass.ScoreValue);
+            DeathEffect(_enemyClass.DeathPrefab, _enemyClass.DurationOfDeathEffect, 
                 _enemyClass.DeathSound, _enemyClass.DeathSoundVolume);
             Destroy();
         }
