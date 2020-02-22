@@ -1,11 +1,11 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using DefaultNamespace;
 using GameSystem.ObjectPool;
 using SingletonScriptableObject;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
+using UniRx;
 using UnityEngine;
 
 namespace Enemy
@@ -34,37 +34,44 @@ namespace Enemy
             if (EnemyRuntimeSet.Items.Count != 0 || GameMaster.CurrentStage.Value == GameStage.BossBattle) return;
             if (GameMaster.LevelScore.Value >= GameMaster.PointsBossStage)
             {
-                GameMaster.InitBossBattle();
                 SpawnBoss();
             }
 
             if (GameMaster.CurrentStage.Value == GameStage.Enemies && !_isSpawnEnemies)
             {
-                StartCoroutine(SpawnAllEnemiesInWave(WaveConfigs[_waveIndex]));
+                SpawnWave();
             }
+        }
+
+        private void SpawnWave()
+        {
+            _isSpawnEnemies = true;
+            var waveConfig = WaveConfigs[_waveIndex];
+            Observable.Interval(TimeSpan.FromSeconds(waveConfig.TimeBetweenSpawns))
+                .Take(waveConfig.NumberOfEnemies)
+                .Where(_ => _isPlayable)
+                .Subscribe(_ => SpawnEnemy(waveConfig), () =>
+                {
+                    _waveIndex = (_waveIndex + 1) % WaveConfigs.Count;
+                    _isSpawnEnemies = false;
+                })
+                .AddTo(this);
+        }
+
+        private void SpawnEnemy(WaveConfig waveConfig)
+        {
+            var newEnemy = ObjectPooler.SpawnFromPool(EnemyBasePrefabTag,
+                waveConfig.WaveWayPoints[0].position,
+                Quaternion.identity).GetComponent<Enemy>();
+            newEnemy.StartEnemy(waveConfig);
+            EnemyRuntimeSet.Add(newEnemy);
         }
 
         private void SpawnBoss()
         {
+            GameMaster.StartBossBattle();
             Boss.gameObject.SetActive(true);
             Boss.StartBoss(BossClass);
-        }
-
-        [SuppressMessage("ReSharper", "Unity.PerformanceCriticalCodeInvocation")]
-        private IEnumerator SpawnAllEnemiesInWave(WaveConfig currentWave)
-        {
-            _isSpawnEnemies = true;
-            for (var enemyCount = 0; enemyCount < currentWave.NumberOfEnemies && _isPlayable; enemyCount++)
-            {
-                var newEnemy = ObjectPooler.SpawnFromPool(EnemyBasePrefabTag, currentWave.WaveWayPoints[0].position,
-                    Quaternion.identity).GetComponent<Enemy>();
-                newEnemy.StartEnemy(currentWave);
-                EnemyRuntimeSet.Add(newEnemy);
-                yield return new WaitForSeconds(currentWave.TimeBetweenSpawns);
-            }
-
-            _waveIndex = (_waveIndex + 1) % WaveConfigs.Count;
-            _isSpawnEnemies = false;
         }
     }
 }

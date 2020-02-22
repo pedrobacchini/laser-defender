@@ -10,7 +10,7 @@
         GameStart?.Invoke();
     }
 
-    public static void TriggerStartGameOver()
+    public static void TriggerBeginGameOver()
     {
         StartGameOver?.Invoke();
     }

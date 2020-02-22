@@ -35,7 +35,9 @@ namespace SingletonScriptableObject
         [OdinSerialize] [ReadOnly] private IntReactiveProperty _level = new IntReactiveProperty();
         public static IntReactiveProperty Level => Instance._level;
 
-        public static void ResetGame()
+        [UsedImplicitly]
+        [RuntimeInitializeOnLoadMethod]
+        private static void Initialize() //Reset Game
         {
             Instance._level.Value = Instance._startLevel;
             Instance._currentScore.Value = 0;
@@ -49,7 +51,7 @@ namespace SingletonScriptableObject
             Instance._levelScore.Value += score;
         }
         
-        public static void InitBossBattle()
+        public static void StartBossBattle()
         {
             Instance._currentStage.Value = GameStage.BossBattle;
         }
@@ -76,7 +78,7 @@ namespace SingletonScriptableObject
 
         public static void LoadGameOver()
         {
-            GameEventManager.TriggerStartGameOver();
+            GameEventManager.TriggerBeginGameOver();
             // Wait some time and load a game over scene
             Observable.Timer(TimeSpan.FromSeconds(Instance._delayGameOverInSeconds))
                 .Subscribe(_ =>
