@@ -135,7 +135,8 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects: []
+    ReferencedUnityObjects:
+    - {fileID: 100000, guid: a5070b77ccafb14408797b4c415c7114, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -144,3 +145,9 @@ MonoBehaviour:
     - Name: Damage
       Entry: 3
       Data: 100
+    - Name: isDestructible
+      Entry: 5
+      Data: true
+    - Name: ImpactVFX
+      Entry: 10
+      Data: 0
